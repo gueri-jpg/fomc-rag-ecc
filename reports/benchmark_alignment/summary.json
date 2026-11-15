@@ -1,0 +1,62 @@
+{
+  "alignment_version": "nfkc-casefold-ascii-alnum-mapped-v1",
+  "configurations": {
+    "128": {
+      "ambiguous": 0,
+      "evidence": 294,
+      "fully_contained": 268,
+      "match_status": {
+        "EXACT_MATCH": 202,
+        "NORMALIZED_MATCH": 66,
+        "PARTIAL_MATCH": 26
+      },
+      "not_found": 0,
+      "page_match_status": {
+        "EXACT_MATCH": 212,
+        "NORMALIZED_MATCH": 82
+      },
+      "split_across_chunks": 26
+    },
+    "256": {
+      "ambiguous": 0,
+      "evidence": 294,
+      "fully_contained": 287,
+      "match_status": {
+        "EXACT_MATCH": 211,
+        "NORMALIZED_MATCH": 76,
+        "PARTIAL_MATCH": 7
+      },
+      "not_found": 0,
+      "page_match_status": {
+        "EXACT_MATCH": 212,
+        "NORMALIZED_MATCH": 82
+      },
+      "split_across_chunks": 7
+    },
+    "512": {
+      "ambiguous": 0,
+      "evidence": 294,
+      "fully_contained": 292,
+      "match_status": {
+        "EXACT_MATCH": 212,
+        "NORMALIZED_MATCH": 80,
+        "PARTIAL_MATCH": 2
+      },
+      "not_found": 0,
+      "page_match_status": {
+        "EXACT_MATCH": 212,
+        "NORMALIZED_MATCH": 82
+      },
+      "split_across_chunks": 2
+    }
+  },
+  "confirmed_page_judgments": 279,
+  "corpus_version": "b43f21bc24da3f85913bdf7e1d6d03dbbeb1d013145f2233b9162f6937fcc052",
+  "new_chunk_judgments": 0,
+  "python": "3.13.14",
+  "qrels_sha256": {
+    "qrels_group_confirmed_PAGES.csv": "d550fdf524af81111504efad0c44dc25ad36b48d4f32007f1808953d16d187cb",
+    "qrels_group_confirmed_PAGES.trec": "9c6080cf08a34361162ffcd57ec187f2e20118ceca19c4e226f742ac7e8e8682"
+  },
+  "unicode_database": "15.1.0"
+}

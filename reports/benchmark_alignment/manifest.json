@@ -1,0 +1,29 @@
+{
+  "code_sha256": {
+    "alignment.py": "e633f4ab4e0b22bbc22b2195a759c07c5748a265f160e81664fbe5f590b5035b",
+    "benchmark.py": "35d80e9984544355b8f1984d458613a2aa5ea3f928bda5808547a99e08a4d05a"
+  },
+  "corpus_version": "b43f21bc24da3f85913bdf7e1d6d03dbbeb1d013145f2233b9162f6937fcc052",
+  "inputs_sha256": {
+    "data/processed/manifest.json": "b2fede6ec619f18e8982c10a93cb7c7fc5481262ff300c8c6dce6f7bf4135f2a",
+    "evaluation/benchmark/evidence_citations_145.jsonl": "15c9305c58ecf1f51c252574905b2a7d0b1f53da82e98cf2747e4437f44ab26e",
+    "evaluation/benchmark/qrels_group_confirmed_PAGES.csv": "d550fdf524af81111504efad0c44dc25ad36b48d4f32007f1808953d16d187cb",
+    "evaluation/benchmark/qrels_group_confirmed_PAGES.trec": "9c6080cf08a34361162ffcd57ec187f2e20118ceca19c4e226f742ac7e8e8682",
+    "evaluation/benchmark/queries_145.jsonl": "64e01b38fee175fb63f67909429752227588fd27538388b365dcd8537ca04df8"
+  },
+  "outputs_sha256": {
+    "alignment_candidates_UNJUDGED.csv": "f8a318d0f8846ae98ff52ae1294a3e1d7330b436eb63619242b08bef583be8f0",
+    "alignment_report_128.csv": "25146261d2e81faaf065b8eaf2e957b8a3e657f381a3639d3c32b8764b0ac427",
+    "alignment_report_256.csv": "b164726dcc22be60a0d2f247bf5ea0fc833636c2218fbabb46e973ef93375304",
+    "alignment_report_512.csv": "7f7d42bfbb1dbc12cf4f436b43ec7e56d194621f7bb9c7b2bafb37d4bc79d4d7",
+    "coverage_by_group.csv": "b91028a0ceb3c87ae5f365ddf3bcba84273eec6337a2a33506f5ee7a97fda13c",
+    "evidence_alignment_128.jsonl": "d9e34eb9b39206b8c0cdd1d0850c918c69c157d9e9d1fadd96670e021da16b2a",
+    "evidence_alignment_256.jsonl": "227594b3b50da3bcf84a3bbe05ca8340dbbceee495e7c7036d97709123e64c53",
+    "evidence_alignment_512.jsonl": "e3589c93c7481523d05229f04a816f1d5ada05e7a0aa150ace1e4b6b1f4674e8",
+    "excluded_associations.json": "82713a2576d8bf5d4215a9d27bd0b9371bdb54a83892f9cc73152254749f58df",
+    "human_review_cases.csv": "1de8d9af6360577643776794e3f5934f9856aebcde338e62cd1da64b672e3017",
+    "qrels_group_confirmed_PAGES.csv": "d550fdf524af81111504efad0c44dc25ad36b48d4f32007f1808953d16d187cb",
+    "qrels_group_confirmed_PAGES.trec": "9c6080cf08a34361162ffcd57ec187f2e20118ceca19c4e226f742ac7e8e8682",
+    "summary.json": "44da888f8c3214c8a54bad139dde9a02ec1fad42f3c543ea3bc63b404e48a426"
+  }
+}

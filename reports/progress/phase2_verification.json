@@ -1,0 +1,10 @@
+{
+  "alignment_reproduced_identically": true,
+  "baseline_preserved_against_local_snapshot": true,
+  "corpus_version": "b43f21bc24da3f85913bdf7e1d6d03dbbeb1d013145f2233b9162f6937fcc052",
+  "evidence": 294,
+  "excluded": 2,
+  "known_page_qrels": 279,
+  "phase1_exports_valid": true,
+  "status": "PASS"
+}

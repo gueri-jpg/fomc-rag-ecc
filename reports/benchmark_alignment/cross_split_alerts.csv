@@ -1,0 +1,3 @@
+question_a,split_a,question_b,split_b,cross_split,exact_normalized,token_jaccard,sequence_ratio,evidence_shingle_jaccard,alert,proposed_action
+FOMC_044,dev,FOMC_102,validation,True,False,0.26087,0.447917,0.678571,True,HUMAN_REVIEW_BEFORE_TUNING
+FOMC_070,test,FOMC_129,dev,True,False,0.0,0.375691,0.875,True,HUMAN_REVIEW_BEFORE_TUNING

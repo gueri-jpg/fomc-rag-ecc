@@ -1,0 +1,63 @@
+{
+  "status": "ANALYST_PROPOSALS_NOT_HUMAN_JUDGMENTS",
+  "cases": {
+    "FOMC_132_E01": {
+      "facts": [
+        {"id": "treasury_to_mortgages", "support": "Higher Treasury yields contributed to an increase in 30-year mortgage rates"},
+        {"id": "term_premiums", "support": "the rise in longer-term yields had been driven primarily or substantially by a rise in the term premiums on Treasury securities"},
+        {"id": "supply_uncertainty", "support": "a fiscal outlook that suggested greater future supply of Treasury securities than previously thought and increased uncertainty about the economic and policy outlooks"},
+        {"id": "policy_neutral_path", "support": "expectations for a higher path of the federal funds rate in light of the surprising resilience of the economy or a possible rise in the neutral policy rate"}
+      ],
+      "context_note": "Le premier chunk peut contenir les facteurs causaux requis; la fin prudente sur persistance et surveillance est dans le suivant. Ne pas présenter les facteurs comme certains.",
+      "requires_other_evidence_for_full_question": false
+    },
+    "FOMC_136_E01": {
+      "facts": [
+        {"id": "wage_easing", "support": "business contacts in several Districts reported an easing in wage pressures or an increased ability to hire and retain workers"},
+        {"id": "participation_immigration", "support": "higher labor force participation, immigration, and an improved job-matching process"}
+      ],
+      "context_note": "Le premier chunk réunit offre de travail et détente salariale; les réserves sur les hausses futures d'offre et risques sectoriels poursuivent le second. Ne pas affirmer une causalité quantifiée.",
+      "requires_other_evidence_for_full_question": false
+    },
+    "FOMC_136_E02": {
+      "facts": [
+        {"id": "wage_balance", "support": "the better balance between labor supply and demand had contributed to an easing of nominal wage pressures"},
+        {"id": "supply_sources", "support": "labor supply had been boosted by increased labor force participation as well as by immigration"}
+      ],
+      "context_note": "Le second chunk réunit les deux faits centraux; le début de la description du marché est dans le premier. L'extrait source finit lui-même sur une phrase inachevée puis un pied de page.",
+      "requires_other_evidence_for_full_question": false
+    },
+    "FOMC_137_E01": {
+      "facts": [
+        {"id": "anchored_expectations", "support": "longer-term inflation expectations appeared to remain well anchored"},
+        {"id": "supply_disinflation", "support": "increases in the labor force or better productivity growth, were viewed by several participants as likely to support continued disinflation"}
+      ],
+      "context_note": "Le second chunk contient ancrage et soutien à la désinflation; le retour à 2 % à moyen terme et les réserves sectorielles sont dans le premier. Le jeu de faits proposé est minimal, non une validation humaine de suffisance.",
+      "requires_other_evidence_for_full_question": false
+    },
+    "FOMC_139_E01": {
+      "facts": [
+        {"id": "smooth_transition", "support": "in order to ensure a smooth transition, the Committee intends to slow and then stop the decline in the size of the balance sheet"},
+        {"id": "reserve_decline", "support": "the prospect of a more rapid decline in reserve balances"}
+      ],
+      "context_note": "Le premier chunk contient les raisons préventives. Le second précise qu'aucune décision d'ajustement n'a été prise; citer les deux si la réponse décrit le statut de décision.",
+      "requires_other_evidence_for_full_question": false
+    },
+    "FOMC_142_E01": {
+      "facts": [
+        {"id": "inflation_risk_balance", "support": "In light of the progress on inflation and the balance of risks, all participants agreed that it was appropriate to ease the stance of monetary policy"},
+        {"id": "september_recalibration", "support": "such a recalibration of the stance of monetary policy would begin to bring it into better alignment with recent indicators of inflation and the labor market"}
+      ],
+      "context_note": "Le premier chunk couvre le volet septembre; l'extrait ne fournit pas le volet novembre de la comparaison demandée. Autre preuve nécessaire même si le texte de septembre était intégralement contenu.",
+      "requires_other_evidence_for_full_question": true
+    },
+    "FOMC_145_E01": {
+      "facts": [
+        {"id": "later_smaller_cuts", "support": "policy rate cuts beginning later in the year, and cumulating to a smaller rate reduction in 2024, than previously assessed"},
+        {"id": "drivers_of_shift", "support": "stronger economic data, perceptions that disinflation might be proceeding more slowly than previously thought, and Federal Reserve communications"}
+      ],
+      "context_note": "Le second chunk couvre le mouvement de mars et ses causes; l'affirmation initiale explicite de hausse du chemin futures est dans le premier. Une preuve de septembre est nécessaire à la comparaison complète.",
+      "requires_other_evidence_for_full_question": true
+    }
+  }
+}

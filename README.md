@@ -4,8 +4,8 @@ Academic Machine Learning project, subject 5, École Centrale Casablanca.
 The objective is to compare retrieval and reranking strategies for grounded
 question answering over FOMC Minutes and Statements.
 
-**Current release: phases 0–1 only.** Security, architecture, PDF extraction,
-preprocessing, EDA and deterministic chunking are implemented. BM25, Dense,
+**Branch update: phases 0–2.** Security, architecture, PDF extraction,
+preprocessing, EDA, deterministic chunking and benchmark alignment are implemented. BM25, Dense,
 Hybrid retrieval, rerankers, RAG generation and the local Streamlit application
 are planned, **not implemented**. No retrieval or generation scores are reported.
 
@@ -22,6 +22,8 @@ are planned, **not implemented**. No retrieval or generation scores are reported
 | Test paraphrases | 30, reserved for frozen configurations |
 | Unanswerable candidates | 10, disabled pending human validation |
 | Phase-1 checks | 22 tests passed; extraction and EDA reproduction verified |
+| Phase-2 alignment | All 294 retained excerpts located; 287 fully within baseline chunks, seven split |
+| Post-audit tests | 47 full / 29 corpus-independent tests passed locally |
 
 PDFs, extracted corpus, model weights, private course materials and page
 screenshots stay local. Source metadata, benchmark files, descriptive tables
@@ -89,6 +91,20 @@ full corpus tests require restored PDFs and regenerated outputs.
 & .venv\Scripts\python.exe scripts/verify_phase1.py --rebuild --eda-rebuild
 ```
 
+Phase-2 diagnostics, using the frozen phase-1 outputs:
+
+```powershell
+& .venv\Scripts\python.exe scripts/align_benchmark.py
+& .venv\Scripts\python.exe scripts/audit_benchmark_splits.py
+& .venv\Scripts\python.exe scripts/diagnose_priority_evidence.py
+& .venv\Scripts\python.exe scripts/audit_hyphens.py
+& .venv\Scripts\python.exe scripts/verify_phase2.py --rebuild
+```
+
+See [alignment and evaluation conventions](docs/benchmark_alignment.md) and
+[cross-split decisions needed before tuning](reports/benchmark_alignment/SPLIT_AUDIT.md).
+Aligned chunks remain unjudged: localization is not a new relevance annotation.
+
 Settings: [configs/corpus_phase1.json](configs/corpus_phase1.json). Generated
 corpus and structural page-to-chunk maps go to `data/processed/`; the common
 baseline for future retrievers is `chunks_256.jsonl`. Rendering creates ignored
@@ -122,7 +138,13 @@ The offline path test checks resolution only; it never requires a PDF directory.
 Integration tests explicitly validate all 93 physical PDFs and their hashes.
 To reproduce the public-clone condition locally, without moving your PDFs, run
 `.venv\Scripts\python.exe scripts/check_offline.py`. GitHub Actions runs the
-six phase-0 checks on Python 3.13, without source PDFs, models or secrets.
+six phase-0 and 23 phase-2 unit checks on Python 3.13, without PDFs or models.
+Run all 29 offline checks with:
+
+```powershell
+& .venv\Scripts\python.exe -m pytest -q tests/test_phase0.py tests/test_benchmark_phase2.py
+& .venv\Scripts\python.exe scripts/check_offline.py --tests tests/test_phase0.py tests/test_benchmark_phase2.py
+```
 
 ## Evaluation methodology and limits
 
@@ -151,7 +173,7 @@ bytes; source hashes must not be silently replaced.
 |---|---|
 | 0 — Audit, security, architecture | Complete |
 | 1 — Corpus, extraction, preprocessing, EDA, chunking | Complete |
-| 2 — Benchmark alignment | Not started |
+| 2 — Benchmark alignment | Implemented on feature branch; human decisions remain before tuning |
 | 3 — Retrieval | Not started |
 | 4 — Reranking | Not started |
 | 5 — Grounded RAG generation | Not started |
