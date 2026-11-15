@@ -48,7 +48,7 @@ def select_questions(queries: list[dict], policy: dict, *, split: str = "dev", p
     return selected, metadata
 
 
-def require_tuning_eligible(selection: dict, policy: dict) -> None:
+def require_tuning_eligible(selection: dict, policy: dict, queries: list[dict] | None = None) -> None:
     """Guard for future parameter selectors: reject diagnostic/final artifacts."""
     if selection.get("purpose") != "tuning" or selection.get("eligible_for_parameter_selection") is not True:
         raise ValueError("Diagnostic/final results cannot select parameters")
@@ -62,3 +62,33 @@ def require_tuning_eligible(selection: dict, policy: dict) -> None:
             or len(set(selected)) != len(selected)
             or set(selected).intersection(policy["excluded_dev_question_ids"])):
         raise ValueError("Tuning artifact violates embargo or effective size")
+    if queries is None:
+        queries, _ = load_selection_inputs(Path(__file__).resolve().parents[2])
+    expected, _ = select_questions(queries, policy, split=split, purpose="tuning")
+    if set(selected) != {q["question_id"] for q in expected}:
+        raise ValueError("Selected IDs do not belong to the exact authorized split")
+    if selection.get("effective_questions") != len(expected) or selection.get("document_corpus_filtered") is not False:
+        raise ValueError("Invalid effective size or corpus-filter flag")
+
+
+def phase3_questions(root: Path, split: str) -> tuple[list[dict], dict]:
+    """Phase 3 never unlocks test, even if a future freeze artifact exists."""
+    if split not in {"dev", "validation"}:
+        raise ValueError("Phase 3 forbids test, paraphrases, all and embargo diagnostics")
+    queries, policy = load_selection_inputs(root)
+    selected, metadata = select_questions(queries, policy, split=split, purpose="tuning")
+    require_tuning_eligible(metadata, policy, queries)
+    return selected, metadata
+
+
+def require_test_authorization(root: Path, artifact: Path | None) -> None:
+    """For later phases only: explicit human-approved freeze, never auto-created."""
+    if artifact is None:
+        raise ValueError("Test evaluation requires an explicitly validated freeze artifact")
+    obj = json.loads(artifact.read_text(encoding="utf-8"))
+    _, policy = load_selection_inputs(root)
+    if (obj.get("human_validated") is not True or obj.get("test_authorized") is not True
+            or obj.get("policy_sha256") != fingerprint(policy)
+            or obj.get("queries_sha256") != policy["queries_sha256"]
+            or not obj.get("approved_configuration_sha256") or not obj.get("approval_reference")):
+        raise ValueError("Missing or invalid explicit test authorization")
