@@ -1,0 +1,36 @@
+{
+  "facts": {
+    "manifest_pdfs": 93,
+    "manifest_pages": 838,
+    "manifest_years": {
+      "2021": 16,
+      "2022": 16,
+      "2023": 16,
+      "2024": 16,
+      "2025": 16,
+      "2026": 13
+    },
+    "found_pdfs": 93,
+    "source_audit_rows": 296,
+    "source_evidence_count": 294,
+    "source_evidence_excluded": 2,
+    "silver_qrel_question_pages": 279,
+    "queries_count": 145,
+    "query_splits": {
+      "test": 30,
+      "dev": 85,
+      "validation": 30
+    },
+    "benchmark_questions": 145,
+    "benchmark_paraphrases": 30,
+    "benchmark_unanswerable_candidates": 10,
+    "variants_count": 30,
+    "negative_candidates": 10,
+    "git_present": true,
+    "status": "PASS"
+  },
+  "warnings": [
+    "Local .env exists: do not commit or display its contents; inspect git status/history safely."
+  ],
+  "errors": []
+}

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fomcrag"
+version = "0.0.1"
+description = "ECC FOMC RAG — local reproducible research"
+requires-python = ">=3.13,<3.14"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=9,<10"]
+corpus = ["PyMuPDF>=1.26,<2", "numpy>=2,<3", "matplotlib>=3.10,<4"]
+retrieval = ["rank-bm25==0.2.2", "sentence-transformers>=5,<7", "scikit-learn>=1.6,<2"]
+app = ["streamlit>=1.50,<2"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "--strict-config --strict-markers -p no:cacheprovider"

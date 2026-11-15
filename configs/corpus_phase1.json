@@ -1,0 +1,14 @@
+{
+  "schema_version": "phase1-v1",
+  "expected_documents": 93,
+  "expected_pages": 838,
+  "extraction_sort": false,
+  "hyphen_policy": "preserve",
+  "short_page_words": 30,
+  "short_chunk_words": 40,
+  "chunk_sizes": [128, 256, 512],
+  "baseline_words": 256,
+  "overlap_words": 40,
+  "near_duplicate_jaccard": 0.8,
+  "seed": 0
+}

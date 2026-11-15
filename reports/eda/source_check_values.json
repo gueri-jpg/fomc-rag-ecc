@@ -1,0 +1,74 @@
+[
+  {
+    "clean_char_end": 55,
+    "clean_char_start": 45,
+    "document": "fomcminutes20210127.pdf",
+    "physical_page": 1,
+    "status": "TEXT_PRESENT",
+    "value": "January 26"
+  },
+  {
+    "clean_char_end": 64,
+    "clean_char_start": 56,
+    "document": "fomcminutes20210127.pdf",
+    "physical_page": 1,
+    "status": "TEXT_PRESENT",
+    "value": "27, 2021"
+  },
+  {
+    "clean_char_end": 276,
+    "clean_char_start": 246,
+    "document": "fomcminutes20210127.pdf",
+    "physical_page": 1,
+    "status": "TEXT_PRESENT",
+    "value": "January 27, 2021, at 9:00 a.m."
+  },
+  {
+    "clean_char_end": 43,
+    "clean_char_start": 29,
+    "document": "monetary20240320a1.pdf",
+    "physical_page": 1,
+    "status": "TEXT_PRESENT",
+    "value": "March 20, 2024"
+  },
+  {
+    "clean_char_end": 718,
+    "clean_char_start": 696,
+    "document": "monetary20240320a1.pdf",
+    "physical_page": 1,
+    "status": "TEXT_PRESENT",
+    "value": "5-1/4 to 5-1/2 percent"
+  },
+  {
+    "clean_char_end": 354,
+    "clean_char_start": 345,
+    "document": "monetary20240320a1.pdf",
+    "physical_page": 1,
+    "status": "TEXT_PRESENT",
+    "value": "2 percent"
+  },
+  {
+    "clean_char_end": 45,
+    "clean_char_start": 29,
+    "document": "monetary20261028a1.pdf",
+    "physical_page": 1,
+    "status": "TEXT_PRESENT",
+    "value": "October 28, 2026"
+  },
+  {
+    "clean_char_end": 242,
+    "clean_char_start": 224,
+    "document": "monetary20261028a1.pdf",
+    "physical_page": 1,
+    "status": "TEXT_PRESENT",
+    "value": "3-3/4 to 4 percent"
+  },
+  {
+    "clean_char_end": 1128,
+    "clean_char_start": 1108,
+    "document": "monetary20261028a1.pdf",
+    "physical_page": 1,
+    "status": "TEXT_PRESENT",
+    "value": "1/4 percentage point"
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "corpus_pdfs": 93,
+  "corpus_pdf_pages": 838,
+  "questions": 145,
+  "verified_silver_evidence_candidates": 294,
+  "source_citations_input": 296,
+  "excluded_supplementary_evidence": 2,
+  "unique_positive_question_page_pairs": 279,
+  "unverified_source_presence_count": 0,
+  "variants": 30,
+  "unanswerable_candidates_not_validated": 10,
+  "splits": {
+    "dev": 85,
+    "validation": 30,
+    "test": 30
+  },
+  "source_categories": {
+    "2021_V2": 25,
+    "MAIN_110": 105,
+    "SUPP_2023_24": 15
+  },
+  "types": {
+    "factual": 68,
+    "explanatory": 42,
+    "multi_document": 4,
+    "comparative": 31
+  },
+  "silver_positive_pages_by_year": {
+    "2021": 78,
+    "2022": 40,
+    "2023": 40,
+    "2024": 62,
+    "2025": 38,
+    "2026": 36
+  },
+  "source_status": "TEXTUAL_PROVENANCE_VERIFIED_GRADES_GROUP_CONFIRMED_USER_REPORT_NONEXHAUSTIVE",
+  "gold_standard_ready": false,
+  "group_confirmed_page_qrels": 279,
+  "individual_annotator_forms_present": false
+}

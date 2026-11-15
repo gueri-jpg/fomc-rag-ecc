@@ -1,0 +1,211 @@
+{
+  "anomalies": {
+    "encoding_suspect": 15,
+    "layout_rule": 347,
+    "long_word": 7,
+    "short_page": 16
+  },
+  "by_year_type": [
+    {
+      "document_type": "minutes",
+      "documents": 8,
+      "pages": 113,
+      "words": 77255,
+      "year": 2021
+    },
+    {
+      "document_type": "minutes",
+      "documents": 8,
+      "pages": 104,
+      "words": 70704,
+      "year": 2022
+    },
+    {
+      "document_type": "minutes",
+      "documents": 8,
+      "pages": 87,
+      "words": 59423,
+      "year": 2023
+    },
+    {
+      "document_type": "minutes",
+      "documents": 8,
+      "pages": 109,
+      "words": 56851,
+      "year": 2024
+    },
+    {
+      "document_type": "minutes",
+      "documents": 8,
+      "pages": 150,
+      "words": 60070,
+      "year": 2025
+    },
+    {
+      "document_type": "minutes",
+      "documents": 6,
+      "pages": 98,
+      "words": 36497,
+      "year": 2026
+    },
+    {
+      "document_type": "statements",
+      "documents": 8,
+      "pages": 33,
+      "words": 8031,
+      "year": 2021
+    },
+    {
+      "document_type": "statements",
+      "documents": 8,
+      "pages": 32,
+      "words": 7056,
+      "year": 2022
+    },
+    {
+      "document_type": "statements",
+      "documents": 8,
+      "pages": 32,
+      "words": 6463,
+      "year": 2023
+    },
+    {
+      "document_type": "statements",
+      "documents": 8,
+      "pages": 32,
+      "words": 6590,
+      "year": 2024
+    },
+    {
+      "document_type": "statements",
+      "documents": 8,
+      "pages": 31,
+      "words": 6288,
+      "year": 2025
+    },
+    {
+      "document_type": "statements",
+      "documents": 7,
+      "pages": 17,
+      "words": 4146,
+      "year": 2026
+    }
+  ],
+  "chunks": {
+    "128": {
+      "count": 4563,
+      "max": 128,
+      "mean": 120.17839140916064,
+      "median": 128.0,
+      "min": 14,
+      "overlap_expansion": 1.3730838762663569,
+      "p05": 66.10000000000002,
+      "p25": 128.0,
+      "p75": 128.0,
+      "p95": 128.0,
+      "short_chunks": 17,
+      "sum": 548374
+    },
+    "256": {
+      "count": 2127,
+      "max": 256,
+      "mean": 212.0047014574518,
+      "median": 256.0,
+      "min": 14,
+      "overlap_expansion": 1.1291020446999553,
+      "p05": 57.0,
+      "p25": 168.0,
+      "p75": 256.0,
+      "p95": 256.0,
+      "short_chunks": 17,
+      "sum": 450934
+    },
+    "512": {
+      "count": 1124,
+      "max": 512,
+      "mean": 365.4928825622776,
+      "median": 383.0,
+      "min": 14,
+      "overlap_expansion": 1.0286448291576318,
+      "p05": 66.0,
+      "p25": 288.75,
+      "p75": 512.0,
+      "p95": 512.0,
+      "short_chunks": 17,
+      "sum": 410814
+    }
+  },
+  "corpus_version": "b43f21bc24da3f85913bdf7e1d6d03dbbeb1d013145f2233b9162f6937fcc052",
+  "document_pages": {
+    "count": 93,
+    "max": 21,
+    "mean": 9.010752688172044,
+    "median": 5.0,
+    "min": 2,
+    "p05": 3.0,
+    "p25": 4.0,
+    "p75": 13.0,
+    "p95": 19.0,
+    "sum": 838
+  },
+  "document_words": {
+    "count": 93,
+    "max": 13654,
+    "mean": 4294.344086021505,
+    "median": 1156.0,
+    "min": 498,
+    "p05": 667.4,
+    "p25": 815.0,
+    "p75": 7552.0,
+    "p95": 9115.999999999995,
+    "sum": 399374
+  },
+  "documents": 93,
+  "empty_pages": 0,
+  "exact_duplicate_page_groups": 3,
+  "exact_duplicate_pdf_groups": 0,
+  "extraction_errors": 0,
+  "first_meeting": "2021-01-27",
+  "hyphen_breaks": 7877,
+  "last_meeting": "2026-10-28",
+  "lexical_vocabulary": 8015,
+  "near_duplicate_method": "all-pairs Jaccard of sets of 5 lexical token shingles, threshold 0.8",
+  "near_duplicate_pairs": 312,
+  "page_chars": {
+    "count": 838,
+    "max": 5762,
+    "mean": 3222.3973747016707,
+    "median": 3077.5,
+    "min": 87,
+    "p05": 380.25,
+    "p25": 2233.25,
+    "p75": 5053.25,
+    "p95": 5551.45,
+    "sum": 2700369
+  },
+  "page_words": {
+    "count": 838,
+    "max": 855,
+    "mean": 476.5799522673031,
+    "median": 455.0,
+    "min": 14,
+    "p05": 57.0,
+    "p25": 345.0,
+    "p75": 735.75,
+    "p95": 815.15,
+    "sum": 399374
+  },
+  "pages_with_hyphen_breaks": 401,
+  "physical_pages": 838,
+  "private_use_characters": 75,
+  "recurrent_lines_ge3_pages": 1414,
+  "replacement_characters": 0,
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ]
+}

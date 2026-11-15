@@ -1,0 +1,19 @@
+{
+  "benchmark_version": "2026-11-15-v2-local-demo",
+  "status": "GROUP_CONFIRMED_SEED_RELEVANCE",
+  "date_of_user_confirmation": "2026-11-15",
+  "user_confirmation": "Les membres du groupe ont réalise une double annotation et accepté les pertinences proposées sans changement; l’utilisateur indique aussi avoir vérifié les preuves interannuelles.",
+  "individual_annotation_files_received": false,
+  "can_claim_measured_inter_annotator_agreement": false,
+  "verified_seed_question_page_pairs": 279,
+  "positive_excerpts_original": 294,
+  "seed_labels_graded": {
+    "1": 91,
+    "2": 188
+  },
+  "other_unjudged_pages_may_exist": true,
+  "tfidf_pool_1740_has_human_labels_recorded": false,
+  "test_usage": "Seed qrels validés par déclaration groupe pour évaluation diagnostique; démonstration de métriques classiques doit expliciter limites si jugements incomplets.",
+  "next_action": "Avant métriques définitives: intégrer fichiers de pooling déjà validés s’ils existent; sinon produire pool à partir des retrievers et relire exclusivement candidats nouveaux qui changeraient les jugements.",
+  "raw_individual_sheets": "Conserver et importer si l’équipe en dispose; ne pas inventer noms/dates/Kappa."
+}

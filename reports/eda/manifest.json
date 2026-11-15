@@ -1,0 +1,36 @@
+{
+  "corpus_version": "b43f21bc24da3f85913bdf7e1d6d03dbbeb1d013145f2233b9162f6937fcc052",
+  "eda_code_sha256": "97132760a7e9b989b8a4087de585affea057b31fa227c3811b9911a8efa1a017",
+  "figures": {
+    "phase1_chronology.png": "1c56a9ea77e3568fe9c5f1a8b25a7a37104a2b3b6fdffd91e7e0a9413afe136f",
+    "phase1_chunks.png": "789f26cfeff64b77438b6e9fdd375b73ff9e25f13078ff578727db1deb004c9b",
+    "phase1_economic_terms.png": "452eb8580b30a216e13a9f28d62209a39b824658fce6978428e84d2699937266",
+    "phase1_frequent_words.png": "dcb1c9b5b9eaff25e41095893b78e22094236441bae018de3c5f576b91d41a49",
+    "phase1_lengths.png": "e1a3c3da8b8308271e0bb866d48eebdbc0d7506b48e07ce471bbf2a419dc5d7e",
+    "phase1_type_and_chunks.png": "7840d551343a4b4acee4babe2637ffd0d701020c09cb87b21a384b8fd7db626b",
+    "phase1_year_type.png": "71cb652ada57501e5403b0c1e3744fd00b950762d5de188b5fe9e6cc7986a81a"
+  },
+  "input_manifest_sha256": "b2fede6ec619f18e8982c10a93cb7c7fc5481262ff300c8c6dce6f7bf4135f2a",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.4",
+  "tables": {
+    "anomalies.csv": "971589e8f1279f1b06f9fe8a5e630c37ba4786706d221db306e99d65a4664ec2",
+    "by_year_type.csv": "e0348f75abf2d3841c123633b924fbef3c9e86f1b283a52c92b391c708050081",
+    "chronology.csv": "e61d13bfb0acddc703b427c4377198ddedf85e8c3f9cd7989c086f719867cc51",
+    "chunks.csv": "c070ff3c28b3ce6777d3bbacafb731785b3f2ca0a5f2d2e2e306b57174681284",
+    "chunks_by_year_type.csv": "18d3dced571e021773f7b7e11db01fa4ad3d4ba1617ce9b0d9816d642bf95702",
+    "content_word_frequencies.csv": "1ea0d448f2e20be5a1cee5a6937d3c976d78cef687283b1d36da9df685320200",
+    "distributions_by_type.csv": "27fad7a3f6a1d7aeccabb83bee3ee0fac1ff824bb2c8e049a704d0ae5867de0f",
+    "documents.csv": "d951fd5a0b4c49282a8b98b8bc0f955467f7050959fba8609c02fa3816896981",
+    "economic_terms.csv": "106e16212086e5bca66afb586f5bfebe06d640c34873309a1c22c7ba4daf2b07",
+    "economic_terms_by_page.csv": "1e082e09276eadb7b0920032471e44301b0f9489c626499b694ef3da8abae694",
+    "exact_duplicate_pages.csv": "fc3153ed631b91b681822c103a38c88947de558a3835df7e3c5a93bc77bf0e53",
+    "exact_duplicate_pdfs.csv": "e6def80954dfc4e352566b7afe3563354b810d3dce5446c93ada0262ebdf4428",
+    "near_duplicate_pages.csv": "a54701e4147c7a6caffe8aaec6b8fcb8a5967c7277f5e6c133a08acc00063d68",
+    "pages.csv": "1c7ef6bd36391e0206c62c6a41690cebe12c3dafd97d787df3c64d3474b1707e",
+    "recurrent_5grams.csv": "94f79403751d9ee66ac9aa8a09662e7d45820d321339161c7aef3fda88a52e5f",
+    "recurrent_lines.csv": "2b5eb5b7c9954113664c0c0fc511227dabb5c1a50e783c473c05b8ef0e883a9f",
+    "suspect_glyphs.csv": "ba13116be413a6524dd7d940e86115a3c074ac99a842e934ce6721342df0aa76",
+    "word_frequencies.csv": "d764d10f1992ac9ba81edad12a99c11d1f741df65b7cbd698d58af3e444d8656"
+  }
+}

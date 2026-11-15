@@ -1,0 +1,94 @@
+{
+  "project": "ECC_ML_Sujet5_FOMC_RAG",
+  "kit_version": "V2_2026-11-15",
+  "goal": "LOCAL_STREAMLIT_DEMO",
+  "status": "SPECIFICATION_NOT_IMPLEMENTED",
+  "deployment": {
+    "streamlit_local_required": true,
+    "docker_required": false,
+    "cloud_required": false,
+    "fastapi_required": false,
+    "postgres_required": false
+  },
+  "corpus": {
+    "pdf_root": "utils/TxtExtraction/TextsData",
+    "pdfs_expected": 93,
+    "pages_expected": 838,
+    "retrieval_scope": "ALL_YEARS",
+    "automatic_year_filter": false
+  },
+  "benchmark": {
+    "query_file": "evaluation/benchmark/queries_145.jsonl",
+    "confirmed_seed_page_qrels": "evaluation/benchmark/qrels_group_confirmed_PAGES.trec",
+    "confirmed_seed_qrels_status": "USER_REPORTED_DOUBLE_ANNOTATION_CONFIRMED_NON_EXHAUSTIVE",
+    "source_evidence": "evaluation/benchmark/evidence_citations_145.jsonl",
+    "questions": 145,
+    "judged_question_page_pairs": 279,
+    "splits": {
+      "dev": 85,
+      "validation": 30,
+      "test": 30
+    },
+    "test_variants": "evaluation/benchmark/robustness_30_TEST_ONLY.jsonl",
+    "unanswerable_candidates": "evaluation/benchmark/unanswerable_10_NOT_GOLD.csv",
+    "unanswerable_enabled": false
+  },
+  "chunking": {
+    "baseline_units": "words",
+    "window_words": 256,
+    "overlap_words": 40,
+    "experiments_window_words": [
+      128,
+      256,
+      512
+    ],
+    "page_boundary": true
+  },
+  "retrieval": {
+    "methods": [
+      "BM25",
+      "DenseMiniLM",
+      "HybridRRF"
+    ],
+    "k": [
+      1,
+      3,
+      5,
+      10,
+      20
+    ],
+    "reranking_in_baseline": false
+  },
+  "reranking": {
+    "candidate_topn": 20,
+    "methods": [
+      "None",
+      "CrossEncoderMiniLM",
+      "BGE_if_available"
+    ],
+    "same_candidate_set": true
+  },
+  "evaluation": {
+    "primary_k": 5,
+    "quality_if_qrels_complete": [
+      "Recall@5",
+      "nDCG@5",
+      "MRR@5",
+      "HitRate@5"
+    ],
+    "diagnostics_if_qrels_incomplete": [
+      "known_positive_coverage@5",
+      "first_known_positive_rr",
+      "unjudged_returned_page_count"
+    ],
+    "cost": [
+      "retrieval_ms_p50",
+      "retrieval_ms_p95",
+      "rerank_ms_p50",
+      "index_bytes"
+    ],
+    "test_after_tuning_freeze": true,
+    "robustness_after_test_freeze": true
+  },
+  "runs": "NOT_EXECUTED"
+}

@@ -1,0 +1,15 @@
+﻿subject,item,problem,correction,risk
+2021 V2 Q021,2021_V2 -> FOMC_021,The question asked WHICH specific imbalances although the cited statement did not enumerate mechanisms.,Reformulated to ask HOW the FOMC explained reopening-period inflation; preserves evidence.,semantic_sufficiency
+2021 V2 Q021,2022 statement added,Annual authoring left a valid 2022 corroboration unjudged.,Added monetary20220126a1.pdf p1 as provisional cross-year evidence.,crossyear_coverage
+SUP Q06,FOMC_131_E02,June 2024 page refers to a different meeting from June 2023.,Excluded from positive qrels; June 2023 evidence retained.,scope_mismatch
+SUP Q09,FOMC_132_E02,"January 2024 excerpt reports declining Treasury yields, not reasons for the autumn 2023 rise.",Excluded from positive qrels; autumn 2023 minutes retained.,contradicting_time_direction
+SUP Q10,FOMC_133,Early-2024 phrasing too narrow for a relevant July 2024 PDFP discussion.,Question extended to 2024 discussions and source text re-extracted.,temporal_precision
+SUP Q11,FOMC_134_E02,Original auto page reference p9 had an unrelated continuation; lower vs higher income evidence is on p8.,"Moved to fomcminutes20240731.pdf page 8, extracted both relevant sentences.",page_shift
+SUP Q15,FOMC_137,Former Q15 contained an irrelevant generic CPI passage; later shortened question still over-asserted causal mechanism.,Use anchored-expectation passages with question on stated role and outlook; verify causal strength with reviewers.,scope_semantics
+SUP Q16,FOMC_138,"Original stored only lemmatized directive text, not readable PDF quotations.",Re-extracted repo/reverse-repo interest rates and limits from March and September 2024 original directives.,source_reconstruction
+SUP Q19,FOMC_141,"Original supporting snippets were clipped to a rate decision, omitting economic context.","Re-extracted larger parts of September and December statements, including growth, labor, inflation and decision.",partial_evidence
+SUP Q22,FOMC_144,Four lemmatized loan-policy chunks were mistaken for verified quotes.,Recovered original PDF passages for Jan/Apr/Jul/Oct 2024 commercial real estate survey findings.,source_reconstruction
+All 145 questions,qrels,Some relevant passages from other years are likely unjudged.,No unjudged page assigned 0; 1740 TF-IDF pool candidates separated from confirmed silver seeds.,incomplete_judgments
+All 145 questions,retrieval unit,"Previous questions/chunks and source passages used incompatible IDs, with duplicate evidence on the same page.",Use stable document#pN page IDs for preliminary evaluation; deduplicate duplicate page positives.,evaluation_unit
+Variants,2021-heavy robustness designs,"Former 30 variants had 25 focused on 2021, and only 5 were in the test split.","Created 30 TEST-only variants, one for each test information need across years.",temporal_sampling_bias
+Negative questions,ten proposed candidates,Absence of an answer has not been verified by exhaustive human review.,Keep as a separate abstention candidate set; never score as gold negatives yet.,unanswerable_validation

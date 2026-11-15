@@ -1,0 +1,61 @@
+# Secrets and machine config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+.envrc
+.aws/
+.streamlit/secrets.toml
+credentials.json
+*service-account*.json
+*.egg-info/
+build/
+dist/
+# Local source/reference course materials, archives and downloaded model weights
+references_local_only/
+# Public repository: original corpus and page-image copies stay local.
+*.pdf
+reports/figures/source_checks/
+.vscode/
+reports/progress/dependencies-phase*.json
+# Local kit installation handoff (not runtime inputs).
+/KIT_MANIFEST_SHA256.csv
+/COMMANDES_DEMARRAGE_WINDOWS.txt
+/PROMPT_DEPART_A_COPIER.txt
+*.zip
+*.tar.gz
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+# Generated indexes, model caches and artifacts
+cache/
+models/
+artifacts/
+data/processed/
+outputs/
+experiments/results/
+reports/progress/_scratch/
+*.log
+*.sqlite3
+*.db
+# Local infrastructure data
+.pgdata/
+postgres_data/
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/.ropeproject/

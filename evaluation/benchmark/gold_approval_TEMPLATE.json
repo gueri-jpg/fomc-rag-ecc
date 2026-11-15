@@ -1,0 +1,6 @@
+{
+  "two_annotators_completed": false,
+  "cross_year_pooling_completed": false,
+  "adjudication_completed": false,
+  "notes": "OLD TEMPLATE only: group accepted the 279 proposed page labels by user confirmation on 2026-11-15. No raw annotator sheets; unjudged TF-IDF candidate rows remain unlabelled here. Do NOT set booleans true without actual documentary evidence of pool completeness/adjudication."
+}

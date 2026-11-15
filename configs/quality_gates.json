@@ -1,0 +1,68 @@
+{
+  "phase_0": {
+    "expected_pdfs": 93,
+    "expected_pages": 838,
+    "no_tracked_env": true,
+    "preflight_pass": true,
+    "benchmark_validation_pass": true,
+    "architecture_and_pytest_smoke": true
+  },
+  "phase_1": {
+    "page_extraction_count": 838,
+    "raw_text_and_provenance": true,
+    "no_cross_document_or_cross_page_chunk": true,
+    "eda_from_real_pages": true,
+    "repeatable_ids": true
+  },
+  "phase_2": {
+    "initial_279_page_qrels_preserved": true,
+    "source_span_alignment": true,
+    "unknown_not_zero": true,
+    "split_overlap_audit": true,
+    "human_double_annotation_already_reported": true
+  },
+  "phase_3": {
+    "all_93_pdfs_searchable": true,
+    "same_chunks_and_budgets": true,
+    "no_date_filter": true,
+    "bm25_baseline": true,
+    "dense_and_hybrid": true,
+    "no_reranking": true,
+    "pool_new_unjudged": true
+  },
+  "phase_4": {
+    "same_candidate_top20": true,
+    "none_baseline": true,
+    "minilm_cross_encoder": true,
+    "bge_if_available": true,
+    "rerank_latency_logged": true
+  },
+  "phase_5": {
+    "grounded_context": true,
+    "real_generator_status_explicit": true,
+    "citations_page_document_checked": true,
+    "abstention": true
+  },
+  "phase_6": {
+    "test_config_frozen": true,
+    "test_paraphrases_30_post_freeze": true,
+    "unanswerable_candidates_disabled_until_approved": true,
+    "explicit_qrel_completeness": true,
+    "error_analysis": true
+  },
+  "phase_7": {
+    "streamlit_local": true,
+    "docker_optional": true,
+    "api_optional": true,
+    "user_can_test_demo": true,
+    "win_install_commands": true,
+    "no_secrets_in_logs": true
+  },
+  "phase_8": {
+    "theory_and_eda_report": true,
+    "slides_pptx": true,
+    "video_15_to_20min_by_team": true,
+    "code_and_data_reproduction": true,
+    "deadline": "2026-11-30"
+  }
+}
