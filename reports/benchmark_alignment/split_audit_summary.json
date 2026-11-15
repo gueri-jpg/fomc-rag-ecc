@@ -1,0 +1,26 @@
+{
+  "config": {
+    "baseline_words": 256,
+    "evidence_shingle_jaccard_alert": 0.6,
+    "hyphen_policy_baseline": "preserve",
+    "paraphrase_analyst_alerts": {
+      "FOMC_002": "Treasury bonds may narrow Treasury securities; ask group to confirm scope.",
+      "FOMC_020": "November/December made explicit; clarify following-two-months temporal convention.",
+      "FOMC_025": "second half becomes late-2021; possible narrowing.",
+      "FOMC_054": "Paraphrase gives resilient banking assessment instead of asking for that component.",
+      "FOMC_068": "quarter-point discloses part of the requested answer.",
+      "FOMC_087": "productivity and housing-services disclose the two requested channels."
+    },
+    "question_sequence_ratio_alert": 0.7,
+    "question_token_jaccard_alert": 0.55,
+    "test_used_for_tuning": false,
+    "version": "phase2-v1"
+  },
+  "cross_split_alerts": 2,
+  "cross_split_pairs": 6000,
+  "exact_duplicates": 0,
+  "frozen_splits_unchanged": true,
+  "pairs_examined": 10440,
+  "paraphrase_numeric_alerts": 2,
+  "paraphrases": 30
+}

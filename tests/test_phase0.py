@@ -14,7 +14,8 @@ BENCH = ROOT / "evaluation" / "benchmark"
 
 def test_explicit_paths():
     paths = ProjectPaths.from_root(ROOT)
-    assert paths.pdfs.is_dir()
+    assert paths.root == ROOT.resolve()
+    assert paths.pdfs == ROOT / "utils" / "TxtExtraction" / "TextsData"
     assert paths.artifacts == ROOT / "artifacts"
     with pytest.raises(ValueError):
         ProjectPaths.from_root(ROOT / "tests")

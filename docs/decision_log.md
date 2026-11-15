@@ -25,3 +25,20 @@
   L'alignement des références reste phase 2.
 - D13 : installation minimale PyMuPDF/matplotlib et transitives; pas de pandas,
   spaCy/NLTK, bibliothèques retrieval, modèles ou Streamlit nécessaires phase 1.
+
+## Revue PR #1 — embargo ciblé approuvé par l'utilisateur
+
+- D14 : adopter configs/tuning_policy.json, version targeted-dev-embargo-v1.
+  FOMC_044 et FOMC_129 restent dans leurs partitions originales mais sont
+  exclues de toute sélection de paramètres sur dev. Tailles nominales 85/30/30;
+  tailles de sélection 83 dev et 30 validation, test 30 réservé après gel.
+  Aucun PDF, page ou chunk associé n'est exclu du corpus documentaire.
+- D15 : diagnostics complets possibles explicitement, étiquetés inéligibles
+  à la sélection. Les exécuter après gel des paramètres ou via un analyste
+  indépendant ne participant pas à leur choix. Un sélecteur futur doit appeler
+  require_tuning_eligible et conserver le hash de politique. Ces garde-fous ne
+  peuvent empêcher une réutilisation humaine indirecte : les constats déjà lus
+  et d'autres similarités restent un risque résiduel.
+- D16 : les six paraphrases signalées restent en attente de validation humaine.
+  Aucune reformulation, nouvelle annotation, fusion de PR ou phase 3 autorisée
+  dans cette mise à jour de revue.

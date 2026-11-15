@@ -1,0 +1,31 @@
+parent_question_id,question_id,analyst_status,analyst_note,human_validation,changed
+FOMC_001,FOMC_001_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_002,FOMC_002_PARA_TEST,POSSIBLE_SCOPE_OR_ANSWER_HINT_SHIFT,Treasury bonds may narrow Treasury securities; ask group to confirm scope.,PENDING,False
+FOMC_010,FOMC_010_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_020,FOMC_020_PARA_TEST,POSSIBLE_SCOPE_OR_ANSWER_HINT_SHIFT,November/December made explicit; clarify following-two-months temporal convention.,PENDING,False
+FOMC_025,FOMC_025_PARA_TEST,POSSIBLE_SCOPE_OR_ANSWER_HINT_SHIFT,second half becomes late-2021; possible narrowing.,PENDING,False
+FOMC_028,FOMC_028_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_040,FOMC_040_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_041,FOMC_041_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_049,FOMC_049_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_050,FOMC_050_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_054,FOMC_054_PARA_TEST,POSSIBLE_SCOPE_OR_ANSWER_HINT_SHIFT,Paraphrase gives resilient banking assessment instead of asking for that component.,PENDING,False
+FOMC_056,FOMC_056_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_060,FOMC_060_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_068,FOMC_068_PARA_TEST,POSSIBLE_SCOPE_OR_ANSWER_HINT_SHIFT,quarter-point discloses part of the requested answer.,PENDING,False
+FOMC_070,FOMC_070_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_071,FOMC_071_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_075,FOMC_075_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_077,FOMC_077_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_080,FOMC_080_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_085,FOMC_085_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_087,FOMC_087_PARA_TEST,POSSIBLE_SCOPE_OR_ANSWER_HINT_SHIFT,productivity and housing-services disclose the two requested channels.,PENDING,False
+FOMC_093,FOMC_093_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_099,FOMC_099_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_100,FOMC_100_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_123,FOMC_123_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_128,FOMC_128_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_139,FOMC_139_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_141,FOMC_141_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_142,FOMC_142_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False
+FOMC_143,FOMC_143_PARA_TEST,NO_OBVIOUS_SHIFT_NOT_CERTIFIED,Formulation screened; no human equivalence approval supplied.,PENDING,False

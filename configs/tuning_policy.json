@@ -1,0 +1,14 @@
+{
+  "version": "targeted-dev-embargo-v1",
+  "decision": "USER_APPROVED_PR1_REVIEW",
+  "queries_sha256": "64e01b38fee175fb63f67909429752227588fd27538388b365dcd8537ca04df8",
+  "nominal_sizes": {"dev": 85, "validation": 30, "test": 30},
+  "tuning_sizes": {"dev": 83, "validation": 30},
+  "excluded_dev_question_ids": ["FOMC_044", "FOMC_129"],
+  "reasons": {
+    "FOMC_044": "Shares November 2022 wage-shortage evidence with FOMC_102 validation.",
+    "FOMC_129": "Shares January 2025 supply-side evidence with FOMC_070 test."
+  },
+  "filter_document_corpus": false,
+  "diagnostics_eligible_for_parameter_selection": false
+}

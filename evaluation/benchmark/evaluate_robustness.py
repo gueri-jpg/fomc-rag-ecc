@@ -7,22 +7,15 @@ Outputs *exploratory* known-positive diagnostics unless human gold qrels are sup
 """
 import json,math,csv,argparse,collections,random,statistics
 from pathlib import Path
+from fomcrag.metrics import select_budget
 ROOT=Path(__file__).resolve().parent
 
 def loadjsonl(p):
  with open(p,encoding='utf-8') as f:return [json.loads(s) for s in f if s.strip()]
 def loadcsv(p):
  with open(p,encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
-def retrieved_pages(pred,k):
- seen=set();a=[]
- for r in pred:
-  pid=r if isinstance(r,str) else r.get('page_id')
-  if not pid and isinstance(r,dict):
-   if 'document' in r and 'page' in r:pid=f"{Path(r['document']).name}#p{int(r['page'])}"
-  if not pid:raise ValueError('Result missing page_id or document/page metadata')
-  if pid not in seen:seen.add(pid);a.append(pid)
-  if len(a)>=k:break
- return a
+def retrieved_pages(pred,k,convention):
+ return select_budget(pred,k,convention)['pages']
 
 def one_score(pages,r,k):
  known=[(i+1,r[p]) for i,p in enumerate(pages) if p in r and r[p]>0]
@@ -35,19 +28,19 @@ def one_score(pages,r,k):
  return (hit,coverage,first,dcg/idcg if idcg else 0)
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--main-predictions',required=True);p.add_argument('--variant-predictions',required=True);p.add_argument('--k',type=int,default=5);p.add_argument('--output');a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--main-predictions',required=True);p.add_argument('--variant-predictions',required=True);p.add_argument('--k',type=int,default=5);p.add_argument('--output');p.add_argument('--convention',choices=['page-coverage-from-chunk@k','unique-page@k'],required=True);a=p.parse_args()
  variants=loadjsonl(ROOT/'robustness_30_TEST_ONLY.jsonl')
  qr=collections.defaultdict(dict)
  for v in loadcsv(ROOT/'qrels_group_confirmed_PAGES.csv'):
   qr[v['question_id']][v['page_id']]=int(v['relevance_grade'])
  main={r['question_id']:r.get('retrieved',r.get('results',[])) for r in loadjsonl(a.main_predictions)}
  pred={r['question_id']:r.get('retrieved',r.get('results',[])) for r in loadjsonl(a.variant_predictions)}
- metricnames=['known_hit@k','known_coverage@k','known_mrr@k','seed_ndcg@k']
+ metricnames=[a.convention+'/'+m for m in ['known_hit@k','known_coverage@k','known_mrr@k','seed_ndcg@k']]
  rows=[]
  for v in variants:
   pid=v['parent_question_id'];vid=v['question_id']
   if pid not in main or vid not in pred:raise ValueError(f'Missing {pid} or {vid} predictions')
-  src=qr[pid];b=one_score(retrieved_pages(main[pid],a.k),src,a.k);z=one_score(retrieved_pages(pred[vid],a.k),src,a.k)
+  src=qr[pid];b=one_score(retrieved_pages(main[pid],a.k,a.convention),src,a.k);z=one_score(retrieved_pages(pred[vid],a.k,a.convention),src,a.k)
   row={'parent_question_id':pid,'variant_id':vid}
   row.update({f'baseline_{m}':b[i] for i,m in enumerate(metricnames)})
   row.update({f'paraphrase_{m}':z[i] for i,m in enumerate(metricnames)})

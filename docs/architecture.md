@@ -1,11 +1,13 @@
-# Architecture locale — phases 0 et 1
+# Architecture locale — phases 0 à 2
 
 Racine effective : dossier contenant `utils/`, `AGENTS.md` et `pyproject.toml`.
 Python imposé : `.venv/Scripts/python.exe`, 3.13.14 Windows x64.
 
 Le package `src/fomcrag` expose des traitements explicites, sans lecture du .env
 ou effet de bord à l'import. `corpus`, `preprocessing`, `chunking`, `ingestion`,
-`storage` et `eda` sont implémentés en phase 1. Les modules des phases 2 à 7
+`storage` et `eda` sont implémentés en phase 1. `alignment`, `benchmark`,
+`split_audit`, `metrics`, `pooling`, `hyphen_diagnostics` fournissent les contrôles
+phase 2 sans moteur de recherche. Les modules des phases 3 à 7
 ci-dessous restent des contrats futurs :
 
 | Phase | Modules | Responsabilité |
@@ -22,6 +24,8 @@ Stockage local JSONL et NumPy, caches dans `artifacts/`, exclus de Git.
 Les exports de corpus sont dans `data/processed/`, également exclus de Git;
 les CSV/JSON/PNG descriptifs sont dans `reports/eda` et `reports/figures`.
 Voir `docs/corpus_preprocessing.md` pour le pipeline et les contrats d'offsets.
+Les diagnostics avec labels restent exclusivement dans reports/benchmark_alignment,
+jamais dans data/processed. Voir docs/benchmark_alignment.md.
 Pas de PostgreSQL, Docker ou cloud obligatoire. Les données de référence ne
 transitent jamais vers le retriever ou le générateur. Une requête ne contient
 que son texte et un identifiant, pas les preuves attendues.
