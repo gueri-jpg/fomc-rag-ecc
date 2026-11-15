@@ -118,6 +118,12 @@ stable IDs, preserved judgments and EDA integrity. Before publication, run
 `scripts/audit_security.py --staged` with the same interpreter.
 Security scans are heuristic, not a guarantee.
 
+The offline path test checks resolution only; it never requires a PDF directory.
+Integration tests explicitly validate all 93 physical PDFs and their hashes.
+To reproduce the public-clone condition locally, without moving your PDFs, run
+`.venv\Scripts\python.exe scripts/check_offline.py`. GitHub Actions runs the
+six phase-0 checks on Python 3.13, without source PDFs, models or secrets.
+
 ## Evaluation methodology and limits
 
 Future BM25, MiniLM Dense and Hybrid RRF systems must share corpus/chunks/top-k,

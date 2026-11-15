@@ -126,6 +126,7 @@ def test_manifest_detects_missing_hash_and_extra_pdf(scratch):
 
 
 def test_actual_corpus_exports():
+    assert len(load_sources(ROOT, ROOT / "evaluation/benchmark/MANIFESTE_CORPUS_93.csv")) == 93
     processed = ROOT / "data/processed"
     manifest = json.loads((processed / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["documents"] == 93 and manifest["physical_pages"] == 838
