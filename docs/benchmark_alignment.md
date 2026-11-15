@@ -114,3 +114,25 @@ Deux paires cross-split partagent des preuves substantielles; aucune partition
 n'a été déplacée. Examiner SPLIT_AUDIT.md avant tuning. Les notes sémantiques
 sur les 30 paraphrases sont un diagnostic analytique, pas une validation humaine
 de l'équivalence. Les dix questions sans réponse restent désactivées.
+
+## Politique de sélection adoptée après revue
+
+Embargo approuvé : configs/tuning_policy.json, targeted-dev-embargo-v1. Les
+145 questions et splits restent intacts; seules FOMC_044 et FOMC_129 sont
+retirées du tuning dev (83 questions). Validation =30; test =30, interdit au
+tuning. Aucun filtrage documentaire. Utiliser load_selection_inputs puis
+select_questions; un futur sélecteur de paramètres doit appeler
+require_tuning_eligible. Cette politique ne lance aucun retriever.
+
+L'évaluateur applique tuning/dev par défaut et retire les deux IDs avant de
+vérifier les prédictions. Exemples pour les phases futures, non exécutés ici :
+
+```powershell
+& .venv\Scripts\python.exe evaluation/benchmark/evaluate_retrieval.py --predictions outputs/dev.jsonl --split dev --purpose tuning --convention page-coverage-from-chunk@k
+# Après gel ou par un analyste indépendant des choix de paramètres seulement :
+& .venv\Scripts\python.exe evaluation/benchmark/evaluate_retrieval.py --predictions outputs/dev-all.jsonl --split dev --purpose diagnostic --convention page-coverage-from-chunk@k
+```
+
+Le second mode exige les 85 résultats et marque eligible_for_parameter_selection
+à false. Il ne doit pas être réinterprété comme tuning. Le marquage ne remplace
+pas la discipline humaine : voir le risque résiduel dans SPLIT_AUDIT.md.

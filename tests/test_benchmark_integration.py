@@ -5,9 +5,25 @@ from pathlib import Path
 from fomcrag.alignment import search_view
 from fomcrag.benchmark import QRELS_HASHES, load_benchmark
 from fomcrag.storage import file_hash, read_jsonl
+from fomcrag.pooling import build_pool
+from fomcrag.selection import load_selection_inputs, select_questions
 
 ROOT = Path(__file__).resolve().parents[1]
 PRIORITY = {"FOMC_132_E01", "FOMC_136_E01", "FOMC_136_E02", "FOMC_137_E01", "FOMC_139_E01", "FOMC_142_E01", "FOMC_145_E01"}
+
+
+def test_tuning_embargo_keeps_shared_document_candidates():
+    queries, policy = load_selection_inputs(ROOT)
+    _, _, judgments = load_benchmark(ROOT)
+    chunks = {c["chunk_id"]: c for c in read_jsonl(ROOT / "data/processed/chunks_256.jsonl")}
+    assert len(select_questions(queries, policy)[0]) == 83 and len(chunks) == 2127
+    for excluded, held_out in (("FOMC_044", "FOMC_102"), ("FOMC_129", "FOMC_070")):
+        shared = {p for q, p in judgments if q == excluded} & {p for q, p in judgments if q == held_out}
+        assert shared
+        for page in shared:
+            candidate = next(c for c in chunks.values() if c["page_id"] == page)
+            pool = build_pool({"synthetic": [{"question_id": held_out, "retrieved": [candidate]}]}, chunks, judgments)
+            assert pool[0]["page_id"] == page and pool[0]["review_status"] == "UNJUDGED"
 
 
 def test_actual_evidence_offsets_and_chunk_identity():

@@ -221,3 +221,76 @@ et le code baseline ont aussi été comparés à main : aucune différence.
 Les PDF, secrets, venv, corpus généré, poids et références privées restent
 exclus; seuls IDs/offsets et diagnostics légers sont publiés. Aucun force-push.
 **Arrêt après phase 2 : aucun BM25/Dense/Hybrid, reranker, LLM ou Streamlit lancé.**
+
+## Décision de revue PR #1 — embargo de tuning adopté
+
+Les constats et propositions précédents sont conservés. L'utilisateur a retenu
+un embargo ciblé, sans déplacement ni modification des 145 questions :
+
+| Usage | Dev | Validation | Test |
+|---|---:|---:|---:|
+| Partitions originales | 85 | 30 | 30 |
+| Sélection de paramètres | 83 | 30 | Interdit |
+| Diagnostic explicitement hors sélection | 85 | 30 | 30, hors tuning |
+| Évaluation après gel | 85 | 30 | 30 |
+
+configs/tuning_policy.json, version targeted-dev-embargo-v1, fixe les exclusions
+FOMC_044 et FOMC_129, leurs raisons, les tailles attendues et l'empreinte du
+fichier de requêtes. Aucun qrel n'est retiré. La sélection manipule uniquement
+les questions : tous les 93 PDF, pages et 2 127 chunks baseline restent
+disponibles, notamment les pages partagées avec les besoins validation/test.
+
+src/fomcrag/selection.py valide la politique et les identités dev, refuse
+test/all pour tuning et fournit la liste exacte des IDs inclus/exclus. Le
+script evaluate_retrieval utilise tuning/dev par défaut; l'embargo est appliqué
+avant la vérification des prédictions. Son exemple d'utilisation inclut les
+deux IDs chunk_id/page_id et --convention. Les résultats portent version/hash
+de politique, finalité, tailles effectives et éligibilité à la sélection.
+
+Les diagnostics complets sont conservés avec --purpose diagnostic, inéligibles
+au choix de paramètres. Un futur sélecteur doit appeler require_tuning_eligible,
+qui refuse diagnostics, sorties finales, versions obsolètes et listes violant
+l'embargo. Faire les diagnostics sur les questions sous embargo après gel ou
+via un analyste indépendant. Ce contrôle logiciel ne garantit pas l'oubli
+humain d'informations déjà vues; les autres similarités restent possibles.
+La réduction à 83 besoins change légèrement la couverture thématique et doit
+être déclarée lors de comparaisons. Voir D14–D16 du journal méthodologique.
+
+Les six paraphrases signalées restent inchangées, en attente de validation
+humaine avant robustesse. Aucun test, question, page ou corpus n'est déplacé.
+
+Vérifications de cette mise à jour, exclusivement via le Python du venv :
+
+```powershell
+& .venv\Scripts\python.exe -m pytest -q tests/test_benchmark_phase2.py
+& .venv\Scripts\python.exe -m pytest -q
+& .venv\Scripts\python.exe scripts/check_offline.py --tests tests/test_phase0.py tests/test_benchmark_phase2.py --output artifacts/offline-tuning-policy.json
+& .venv\Scripts\python.exe scripts/preflight_codex.py --hash-pdfs
+& .venv\Scripts\python.exe scripts/verify_kit_v2.py
+& .venv\Scripts\python.exe -m pip check
+```
+
+Résultats : **37 tests unitaires phase 2 réussis**, **62 tests complets en
+6,06 s** (les 47 antérieurs et 15 nouveaux), **43 tests hors corpus en 0,57 s**.
+Les tests couvrent les tailles et IDs exacts, diagnostics conservant les 85,
+validation/test inchangés, politique invalide/obsolète, refus du tuning test,
+embargo réellement appliqué par l'évaluateur et maintien des pages partagées
+dans le pool de candidats. Les données d'entrée du test d'évaluateur sont
+synthétiques; aucun score réel de retrieval n'a été calculé.
+
+Preflight --hash-pdfs, kit V2 et pip check : PASS. Les deux qrels, le manifeste
+et les neuf exports baseline ont été comparés aux SHA256 capturés avant les
+travaux de phase 2 : identiques; 93 PDF intacts et 2 127 chunks conservés.
+Le fichier des requêtes conserve son SHA256
+64e01b38fee175fb63f67909429752227588fd27538388b365dcd8537ca04df8.
+La configuration, le sélecteur, l'évaluateur, deux fichiers de tests, README,
+la documentation d'alignement, SPLIT_AUDIT, le journal et ce rapport constituent
+les seuls changements de cette mise à jour. La CI existante inclut les nouveaux
+tests car elle cible déjà test_benchmark_phase2.py.
+
+Contrôle prépublication : git diff --cached --check et
+scripts/audit_security.py --staged réussis sur les dix fichiers explicitement
+sélectionnés, sans secret, chemin personnel ou fichier interdit détecté.
+
+Mise à jour sur feature/benchmark-alignment, PR #1 uniquement : aucune fusion
+et aucune phase 3. Les constats d'audit ne sont pas effacés par cette décision.

@@ -18,6 +18,7 @@ are planned, **not implemented**. No retrieval or generation scores are reported
 | Baseline | 2,127 chunks, up to 256 words, overlap 40 |
 | Alternatives | 128 words: 4,563 chunks; 512 words: 1,124 chunks |
 | Questions | 145: 85 development / 30 validation / 30 test |
+| Effective tuning dev | 83, excluding FOMC_044 and FOMC_129; original partitions unchanged |
 | Group-confirmed judgments | 279 question–page pairs: 188 grade 2, 91 grade 1 |
 | Test paraphrases | 30, reserved for frozen configurations |
 | Unanswerable candidates | 10, disabled pending human validation |
@@ -138,8 +139,8 @@ The offline path test checks resolution only; it never requires a PDF directory.
 Integration tests explicitly validate all 93 physical PDFs and their hashes.
 To reproduce the public-clone condition locally, without moving your PDFs, run
 `.venv\Scripts\python.exe scripts/check_offline.py`. GitHub Actions runs the
-six phase-0 and 23 phase-2 unit checks on Python 3.13, without PDFs or models.
-Run all 29 offline checks with:
+six phase-0 and 37 phase-2 unit checks on Python 3.13, without PDFs or models.
+Run all 43 offline checks with:
 
 ```powershell
 & .venv\Scripts\python.exe -m pytest -q tests/test_phase0.py tests/test_benchmark_phase2.py
@@ -150,7 +151,10 @@ Run all 29 offline checks with:
 
 Future BM25, MiniLM Dense and Hybrid RRF systems must share corpus/chunks/top-k,
 without automatic year filtering. Cross-Encoder rerankers will receive identical
-top-20 candidates. Select hyperparameters on development/validation only; test
+top-20 candidates. Tuning uses 83 dev questions (FOMC_044/FOMC_129 embargoed)
+and the unchanged 30 validation questions, through configs/tuning_policy.json.
+Full diagnostics retain all original questions but are ineligible for parameter
+selection; inspect them only after freeze or with an independent analyst. Test
 and paired paraphrases remain reserved until configuration freeze.
 
 The 279 page judgments are accepted according to the group's reported double

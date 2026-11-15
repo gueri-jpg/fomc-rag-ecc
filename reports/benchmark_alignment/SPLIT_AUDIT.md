@@ -1,5 +1,9 @@
 # Audit des partitions et paraphrases — aucune partition modifiée
 
+Constats et propositions historiques conservés ci-dessous. La décision
+ultérieure d'embargo ciblé, consignée à la fin, remplace ces propositions
+pour la sélection de paramètres sans modifier les partitions originales.
+
 Méthode explicable : toutes les 10 440 paires de questions, dont 6 000
 cross-split. Jaccard de tokens, ratio SequenceMatcher et Jaccard de sous-chaînes
 de preuves normalisées (40 caractères, stride 10), sans modèle appris.
@@ -54,3 +58,25 @@ Les autres paires n'ont pas de changement manifeste repéré dans cette lecture;
 cela ne constitue pas une certification d'équivalence. Conserver le statut
 pending human review et n'exécuter la robustesse qu'après gel. Les dix
 candidates sans réponse restent désactivées.
+
+## Décision utilisateur lors de la revue PR #1 : embargo ciblé
+
+Les deux exclusions de tuning sont approuvées, versionnées dans
+configs/tuning_policy.json et appliquées par src/fomcrag/selection.py.
+FOMC_044 et FOMC_129 ne contribuent à aucun choix de paramètres sur dev.
+Le fichier original conserve 145 questions, **85 dev / 30 validation / 30 test**;
+la sélection de tuning contient **83 dev**, validation et test restant à 30.
+Aucun déplacement ni rééquilibrage. Les 93 PDF et tous les chunks restent dans
+le corpus, y compris les pages partagées des deux paires signalées.
+
+L'évaluation distingue tuning, diagnostic et frozen-evaluation. Les diagnostics
+complets sont inéligibles à la sélection et doivent attendre le gel ou être
+confiés à un analyste indépendant : ne pas choisir un modèle depuis un résultat
+sur les questions sous embargo ou un agrégat qui les inclut. Les sorties gardent
+IDs sélectionnés/exclus, finalité, tailles effectives, version et hash de politique.
+
+Risque résiduel : retirer deux besoins du tuning ne prouve ni indépendance
+totale des partitions ni oubli des réponses déjà vues. La couverture thématique
+des 83 questions diffère légèrement; déclarer cette taille et ne pas comparer
+silencieusement avec des scores sur 85. Les six paraphrases restent inchangées
+et en attente de validation humaine avant robustesse.

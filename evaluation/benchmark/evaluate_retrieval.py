@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-"""Evaluate FOMC retrieval with explicit NON-EXHAUSTIVE SILVER vs expert-validated GOLD separation.
+r"""Evaluate FOMC retrieval with explicit NON-EXHAUSTIVE SILVER vs expert-validated GOLD separation.
 
 Example:
-  python evaluate_retrieval.py --predictions predictions.jsonl --mode silver --split test
+  .venv\Scripts\python.exe evaluation/benchmark/evaluate_retrieval.py --predictions predictions.jsonl --mode silver --split dev --purpose tuning --convention page-coverage-from-chunk@k
 
 Predictions JSONL (ranked best first):
-  {"question_id":"FOMC_001","retrieved":[{"page_id":"monetary20210127a1.pdf#p1"}, ...]}
+  {"question_id":"FOMC_003","retrieved":[{"chunk_id":"<actual_chunk_id>","page_id":"<source.pdf>#p1"}, ...]}
+
+Default tuning: 83 dev questions (044/129 embargoed), no corpus filtering.
+Use --purpose diagnostic --split dev for all 85 dev questions; such results
+are explicitly ineligible for parameter selection. Test needs diagnostic or
+frozen-evaluation purpose and must never be used to choose parameters.
 
 A chunk-level retrieval must carry source page metadata. We report page-level proxy retrieval,
 NOT evidence-span/chunk metrics. Duplicate pages get credited only once.
@@ -13,6 +18,7 @@ NOT evidence-span/chunk metrics. Duplicate pages get credited only once.
 import argparse,collections,csv,json,math,sys
 from pathlib import Path
 from fomcrag.metrics import CONVENTIONS, select_budget
+from fomcrag.selection import PURPOSES, load_selection_inputs, select_questions
 
 ROOT=Path(__file__).resolve().parent
 
@@ -55,7 +61,8 @@ def main():
  ap=argparse.ArgumentParser(description='FOMC: page-level retrieval evaluation (initial silver / validated gold).')
  ap.add_argument('--predictions',required=True)
  ap.add_argument('--mode',choices=['silver','gold'],default='silver')
- ap.add_argument('--split',choices=['dev','validation','test','all'],default='test')
+ ap.add_argument('--split',choices=['dev','validation','test','all'],default='dev')
+ ap.add_argument('--purpose',choices=PURPOSES,default='tuning')
  ap.add_argument('--k',type=int,default=5)
  ap.add_argument('--convention',choices=CONVENTIONS,required=True,help='Explicit budget; chunk@k requires chunk judgments not supplied by this page evaluator.')
  ap.add_argument('--qrels')
@@ -66,8 +73,9 @@ def main():
  if a.convention=='chunk@k':ap.error('Page qrels cannot score chunk@k. Supply independently judged chunk qrels to a chunk evaluator.')
  if a.mode=='gold':check_gold_manifest(a.gold_manifest)
  rels=grade_map(a.mode,a.qrels or ROOT/('qrels_group_confirmed_PAGES.csv' if a.mode=='silver' else 'validated_qrels.csv'))
- questions=list(readjsonl(ROOT/'queries_145.jsonl'))
- targets={q['question_id']:q for q in questions if a.split=='all' or q['split']==a.split}
+ questions,policy=load_selection_inputs(ROOT.parents[1])
+ selected,selection=select_questions(questions,policy,split=a.split,purpose=a.purpose)
+ targets={q['question_id']:q for q in selected}
  if not targets:raise ValueError('No target questions')
  preds={r.get('question_id'):r.get('retrieved',r.get('results',[])) for r in readjsonl(a.predictions)}
  missing=set(targets)-set(preds)
@@ -94,7 +102,7 @@ def main():
   ndcg=sum(gains)/idcg if idcg else 0
   details.append(dict(question_id=qid,split=targets[qid]['split'],convention=a.convention,consumed_chunks=budget['consumed_chunks'],known_positive_hit_at_k=int(hit),known_positive_coverage_at_k=rrate,first_known_positive_rr=mrr,seed_ndcg_at_k=ndcg,known_positive_pages=n_known_hits,known_positive_pages_in_qrels=positives,judged_returned_pages=sum(v is not None for v in grades),unjudged_returned_pages=sum(v is None for v in grades),retrieved_unique_pages=len(returned),retrieved_page_ids=';'.join(returned)))
  agg={k:sum(float(d[k]) for d in details)/len(details) for k in ('known_positive_hit_at_k','known_positive_coverage_at_k','first_known_positive_rr','seed_ndcg_at_k','unjudged_returned_pages')}
- result={'mode':a.mode,'split':a.split,'k':a.k,'convention':a.convention,'questions':len(details),'metrics':{a.convention+'/'+key:value for key,value in agg.items()},'qualification':('GROUP_CONFIRMED_KNOWN_POSITIVE_QRELS_NON_EXHAUSTIVE; NOT UNBIASED FULL RECALL/PRECISION/NDCG' if a.mode=='silver' else 'GOLD_PAGE_LEVEL_METRICS_REVIEWED_POOL'), 'unit':'source PDF pages under explicit chunk/page budget', 'consumed_chunks':sum(d['consumed_chunks'] for d in details)}
+ result={'mode':a.mode,'split':a.split,'selection':selection,'k':a.k,'convention':a.convention,'questions':len(details),'metrics':{a.convention+'/'+key:value for key,value in agg.items()},'qualification':('GROUP_CONFIRMED_KNOWN_POSITIVE_QRELS_NON_EXHAUSTIVE; NOT UNBIASED FULL RECALL/PRECISION/NDCG' if a.mode=='silver' else 'GOLD_PAGE_LEVEL_METRICS_REVIEWED_POOL'), 'unit':'source PDF pages under explicit chunk/page budget', 'consumed_chunks':sum(d['consumed_chunks'] for d in details)}
  print(json.dumps(result,ensure_ascii=False,indent=2))
  if a.output:
   with open(a.output,'w',encoding='utf-8') as f:json.dump({'summary':result,'per_question':details},f,ensure_ascii=False,indent=2)

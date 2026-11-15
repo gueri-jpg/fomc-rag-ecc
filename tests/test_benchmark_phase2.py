@@ -1,11 +1,96 @@
 """Pure offline phase-2 tests: no PDFs, exports, models or extra dependencies."""
 import pytest
+from copy import deepcopy
+import json
+from pathlib import Path
+import subprocess
+import sys
+from tempfile import TemporaryDirectory
 
 from fomcrag.alignment import chunk_overlaps, locate_evidence, search_view
 from fomcrag.hyphen_diagnostics import lexical_ablation_candidate
 from fomcrag.metrics import known_page_diagnostics, select_budget
 from fomcrag.pooling import build_pool, merge_human_judgments
 from fomcrag.split_audit import audit_paraphrases, audit_splits
+from fomcrag.selection import load_selection_inputs, require_tuning_eligible, select_questions
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_targeted_embargo_preserves_original_queries():
+    queries, policy = load_selection_inputs(ROOT)
+    before = deepcopy(queries)
+    selected, metadata = select_questions(queries, policy)
+    assert set(policy["excluded_dev_question_ids"]) == {"FOMC_044", "FOMC_129"}
+    dev_ids = {q["question_id"] for q in queries if q["split"] == "dev"}
+    assert {q["question_id"] for q in selected} == dev_ids - {"FOMC_044", "FOMC_129"}
+    assert len(selected) == 83 and metadata["nominal_questions"] == 85
+    assert metadata["document_corpus_filtered"] is False
+    require_tuning_eligible(metadata, policy)
+    assert queries == before and len(queries) == 145
+
+
+@pytest.mark.parametrize("split,purpose,count", [
+    ("dev", "diagnostic", 85), ("validation", "tuning", 30),
+    ("validation", "diagnostic", 30), ("test", "frozen-evaluation", 30),
+    ("test", "diagnostic", 30), ("all", "diagnostic", 145),
+])
+def test_explicit_purpose_and_unchanged_partitions(split, purpose, count):
+    queries, policy = load_selection_inputs(ROOT)
+    selected, metadata = select_questions(queries, policy, split=split, purpose=purpose)
+    assert len(selected) == count
+    assert selected == [q for q in queries if split == "all" or q["split"] == split]
+    if purpose != "tuning":
+        assert metadata["eligible_for_parameter_selection"] is False
+        with pytest.raises(ValueError, match="cannot select parameters"):
+            require_tuning_eligible(metadata, policy)
+
+
+@pytest.mark.parametrize("split", ["test", "all"])
+def test_test_never_selectable_for_tuning(split):
+    queries, policy = load_selection_inputs(ROOT)
+    with pytest.raises(ValueError, match="prohibited for tuning"):
+        select_questions(queries, policy, split=split)
+
+
+@pytest.mark.parametrize("exclusions", [["FOMC_044", "FOMC_044"], ["FOMC_001", "FOMC_129"], ["missing", "FOMC_129"]])
+def test_policy_rejects_duplicate_unknown_or_nondev_embargo(exclusions):
+    queries, policy = load_selection_inputs(ROOT)
+    policy["excluded_dev_question_ids"] = exclusions
+    with pytest.raises(ValueError):
+        select_questions(queries, policy)
+
+
+def test_tuning_guard_rejects_diagnostic_relabeling_or_stale_policy():
+    queries, policy = load_selection_inputs(ROOT)
+    _, metadata = select_questions(queries, policy, purpose="diagnostic")
+    metadata.update(purpose="tuning", eligible_for_parameter_selection=True)
+    with pytest.raises(ValueError):
+        require_tuning_eligible(metadata, policy)
+    _, metadata = select_questions(queries, policy)
+    metadata["policy_sha256"] = "old-policy"
+    with pytest.raises(ValueError):
+        require_tuning_eligible(metadata, policy)
+
+
+def test_evaluator_applies_embargo_before_requiring_predictions():
+    # Synthetic ranked inputs test the evaluator contract, not retrieval quality.
+    queries, policy = load_selection_inputs(ROOT)
+    selected, _ = select_questions(queries, policy)
+    base = ROOT / "artifacts/test-tuning"
+    base.mkdir(parents=True, exist_ok=True)
+    with TemporaryDirectory(dir=base) as directory:
+        predictions = Path(directory) / "synthetic.jsonl"
+        predictions.write_text("\n".join(json.dumps({"question_id": q["question_id"], "retrieved": [
+            {"chunk_id": "synthetic-candidate", "page_id": "synthetic-page"}]}) for q in selected), encoding="utf-8")
+        command = [sys.executable, str(ROOT / "evaluation/benchmark/evaluate_retrieval.py"),
+                   "--predictions", str(predictions), "--convention", "page-coverage-from-chunk@k"]
+        run = subprocess.run(command, capture_output=True, text=True, check=True)
+        summary = json.loads(run.stdout)
+        assert summary["questions"] == 83
+        require_tuning_eligible(summary["selection"], policy)
+        diagnostic = subprocess.run(command + ["--purpose", "diagnostic"], capture_output=True, text=True)
+        assert diagnostic.returncode != 0 and "Missing predictions for 2 questions" in diagnostic.stderr
 
 
 @pytest.mark.parametrize("text,evidence,status", [
