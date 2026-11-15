@@ -42,3 +42,32 @@
 - D16 : les six paraphrases signalées restent en attente de validation humaine.
   Aucune reformulation, nouvelle annotation, fusion de PR ou phase 3 autorisée
   dans cette mise à jour de revue.
+
+## Phase 3 — autorisation suivante, PR #1 fusionnée
+
+- D17 : main intègre 4236a3f ; travail sur feature/retrieval. Protocole et
+  grille enregistrés dans b1854a0 avant le premier calcul réel. Corpus unique
+  de 2 127 chunks, portée intégrale ; aucun apprentissage sur labels.
+- D18 : appartenance effective au split vérifiée, pas seulement la taille.
+  Phase 3 refuse test/all/paraphrases et diagnostics sous embargo. Dev=83,
+  validation=30 une seule passe ; pas de gel humain autorisant le test.
+  Après validation, nouvelle sélection dev et réexécution validation refusées.
+- D19 : sélectionner sur dev uniquement par couverture connue à cinq chunks,
+  puis hit et RR ; grille préenregistrée, égalités déterministes. Résultat :
+  BM25 k1=1,2,b=0,75 ; RRF k=10 ; recommandation BM25 L0. Validation n'a
+  provoqué aucun ajustement. Garder aussi les deux autres méthodes.
+- D20 : conserver le max_seq_length réel du checkpoint MiniLM verrouillé,
+  soit 128 tokens. Déclarer 1 955/2 127 chunks tronqués (91,91 %) ; ne pas
+  attribuer causalement toutes les erreurs à cette limite. Une autre limite
+  nécessiterait une nouvelle expérience annoncée, sans tuning sur ce contrôle.
+- D21 : exécuter l'ablation lexicale L1 seulement sur les vrais spans raw,
+  sans changement de source, segmentation ou Dense. L0 reste préféré sur dev.
+  Les gains de rang ne sont pas nécessairement des gains de couverture.
+- D22 : métriques conditionnelles aux pages positives connues, deux budgets
+  distincts ; pas de grade chunk déduit d'une page. Pool réel top-20 :
+  3 731 nouveaux couples question–page UNJUDGED, aucun grade inventé et pas
+  de réannotation des couples déjà jugés. IC appariés descriptifs, pertinence
+  exhaustive et gagnant universel non établis. Analyse de 20 cas documentée.
+- D23 : poids/index/rankings textuels locaux ; tableaux, graphiques et file
+  de revue légers publiables après audit. PR séparée sans fusion automatique.
+  Aucune phase 4, génération, application ou expérience test commencée.

@@ -84,3 +84,46 @@ def test_lexical_cache_reuse_and_invalidation():
         reused = save_lexical_cache(Path(directory), [["not", "5.25%"]], {"corpus": "a"}, "L0")
         changed = save_lexical_cache(Path(directory), [["not", "5.25%"]], {"corpus": "b"}, "L0")
         assert not first["cache_hit"] and reused["cache_hit"] and first["key"] != changed["key"]
+def test_saved_run_rejects_injected_partition_and_wrong_provenance():
+    from fomcrag.retrieval_reporting import validate_saved_run
+    query = dict(question_id="dev-a", question="No rate change?", split="dev")
+    chunks = {f"c{i:03}": dict(chunk_id=f"c{i:03}", page_id=f"d#p{i:03}", document_id="d", source_pdf="d.pdf",
+        year=2021, doc_type="Statement", text="No rate change", char_start=0, char_end=14) for i in range(100)}
+    hits = [dict(chunk, rank=i+1, score=100-i) for i, chunk in enumerate(chunks.values())]
+    record = dict(query, method="BM25", corpus_identity={"v": 1}, config_id="fixed", reranking=False, retrieved=hits)
+    validate_saved_run([record], [query], chunks, {"v": 1}, "fixed", "BM25")
+    import copy
+    injected = copy.deepcopy(record)
+    injected["question_id"] = "test-a"
+    with pytest.raises(ValueError, match="partition"):
+        validate_saved_run([injected], [query], chunks, {"v": 1}, "fixed", "BM25")
+    injected = copy.deepcopy(record)
+    injected["retrieved"][0]["year"] = 2026
+    with pytest.raises(ValueError, match="provenance"):
+        validate_saved_run([injected], [query], chunks, {"v": 1}, "fixed", "BM25")
+
+
+def test_review_queue_never_relabels_existing_pages():
+    from fomcrag.retrieval_reporting import review_queue
+    common = dict(question_id="q", candidate_chunk_ids=["c"], returned_by=[dict(method="BM25", rank=1)])
+    rows = [dict(common, page_id="known", page_judgment=2), dict(common, page_id="unknown", page_judgment=None)]
+    queue = review_queue(rows, {"c": dict(source_pdf="d.pdf", year=2022, doc_type="Minutes")},
+        {"q": dict(question="What happened in 2021?", split="dev")})
+    assert len(queue) == 1 and queue[0]["page_id"] == "unknown"
+    assert queue[0]["review_status"] == "UNJUDGED" and queue[0]["relevance_grade"] == ""
+    assert queue[0]["cross_explicit_question_year"] and queue[0]["priority"] == 55.
+
+
+def test_retrievers_reject_label_records_and_have_no_label_imports():
+    import ast
+    import inspect
+    from fomcrag.dense import DenseEncoder
+    from fomcrag import retrieval, dense, indexing
+    with pytest.raises(TypeError):
+        DenseEncoder.query(object(), {"question": "q", "answer": "secret label"})
+    with pytest.raises(TypeError):
+        BM25Index([["rate"]], ["c"]).scores({"question": "q", "qrels": {}})
+    for module in (retrieval, dense, indexing):
+        tree = ast.parse(inspect.getsource(module))
+        assert not any(isinstance(node, ast.ImportFrom) and node.module in {
+            "selection", "benchmark", "retrieval_evaluation", "pooling", "alignment"} for node in ast.walk(tree))

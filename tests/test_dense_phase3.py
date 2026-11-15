@@ -24,6 +24,13 @@ def test_dense_dimension_normalization_and_cache():
         assert np.array_equal(matrix, cached) and hit["cache_hit"]
         assert matrix.shape == (2, 384) and metadata["tokenization"][1]["truncated"]
         assert metadata["tokenization"][1]["used_tokens"] == encoder.model.max_seq_length
+        encoder.descriptor = dict(encoder.descriptor, seed=encoder.descriptor["seed"] + 1)
+        _, invalidated = encoder.encode(texts, ["synthetic-a", "synthetic-b"], Path(directory))
+        assert not invalidated["cache_hit"] and invalidated["key"] != metadata["key"]
+        # A validly shaped array is still rejected if its disk checksum changed.
+        (Path(directory) / (invalidated["key"] + ".npy")).write_bytes(b"tampered")
+        with pytest.raises(ValueError, match="checksum"):
+            encoder.encode(texts, ["synthetic-a", "synthetic-b"], Path(directory))
         validate_embeddings(matrix, 2, 384)
         with pytest.raises(ValueError):
             validate_embeddings(matrix * 2, 2, 384)

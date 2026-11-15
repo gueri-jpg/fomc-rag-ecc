@@ -1,0 +1,269 @@
+{
+  "bootstrap_repeats": 2000,
+  "bootstrap_unit": "query need; percentile 95%; descriptive, no multiplicity correction, missing labels unchanged",
+  "config_id": "342417c8c40e38ca523408777042324d6fa9d2e275b7ab33b62b98108b72c5e8",
+  "corpus_identity": {
+    "chunk_ids_sha256": "0dd0a30efa3f532ebaf06e4ebbd0ea3207903dcc38ffea522f1dfc8ec3d5dbf2",
+    "chunks": 2127,
+    "chunks_sha256": "0489ac8494e25d06b282548f55a4c845c1be2a64f1dbf45a9987145ab049cbb5",
+    "corpus_version": "b43f21bc24da3f85913bdf7e1d6d03dbbeb1d013145f2233b9162f6937fcc052",
+    "documents": 93,
+    "pages": 838
+  },
+  "hyphen_ablation": {
+    "baseline_reconstruction_mismatches": 0,
+    "changed_chunks": 1240,
+    "joined_occurrences_with_overlap": 9010,
+    "note": "Occurrences in chunk windows include overlap; not unique page counts",
+    "protected_occurrences_with_overlap": 39
+  },
+  "immutable_files_verified": {
+    "data/processed/chunks_256.jsonl": "0489ac8494e25d06b282548f55a4c845c1be2a64f1dbf45a9987145ab049cbb5",
+    "evaluation/benchmark/qrels_group_confirmed_PAGES.csv": "d550fdf524af81111504efad0c44dc25ad36b48d4f32007f1808953d16d187cb",
+    "evaluation/benchmark/qrels_group_confirmed_PAGES.trec": "9c6080cf08a34361162ffcd57ec187f2e20118ceca19c4e226f742ac7e8e8682"
+  },
+  "judgments_exhaustive": false,
+  "model_files_bytes": 134205111,
+  "pools": {
+    "dev": {
+      "chunk_candidates": 3100,
+      "existing_page_judgments": 86,
+      "new_unjudged_pages": 2756,
+      "page_candidates": 2842
+    },
+    "validation": {
+      "chunk_candidates": 1110,
+      "existing_page_judgments": 28,
+      "new_unjudged_pages": 975,
+      "page_candidates": 1003
+    }
+  },
+  "qrels_sha256": "9c6080cf08a34361162ffcd57ec187f2e20118ceca19c4e226f742ac7e8e8682",
+  "resources": {
+    "dev": {
+      "dense_document_cache": {
+        "array_sha256": "49be8495d38a41be9c591d9294d37962ac1226705a7282adf834746539b5f358",
+        "bytes": 3694865,
+        "cache_hit": false,
+        "current_seconds": 160.6533164998982,
+        "encode_seconds": 160.60710419993848,
+        "encoder": {
+          "dense_code_sha256": "4112920ceb819e9707cf744c313213f0a8d3c683d5859807d6795352cdacdf12",
+          "dependencies": {
+            "numpy": "2.5.4",
+            "sentence-transformers": "5.1.2",
+            "torch": "2.9.0+cpu",
+            "transformers": "4.57.1"
+          },
+          "device": "cpu",
+          "dimension": 384,
+          "files_sha256": "f7305f07447e75ab74e1b80b64514e5b3f3d7958d1228fdeb9eea1202a2092c3",
+          "max_seq_length": 128,
+          "model": "sentence-transformers/all-MiniLM-L12-v2",
+          "normalize": true,
+          "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+          "seed": 20261115
+        },
+        "key": "52e68b6d60d7e3a55312a6f1ab2b4d9e99f174289d34fbefffdb45874a1a33b3"
+      },
+      "dense_encoder": {
+        "dense_code_sha256": "4112920ceb819e9707cf744c313213f0a8d3c683d5859807d6795352cdacdf12",
+        "dependencies": {
+          "numpy": "2.5.4",
+          "sentence-transformers": "5.1.2",
+          "torch": "2.9.0+cpu",
+          "transformers": "4.57.1"
+        },
+        "device": "cpu",
+        "dimension": 384,
+        "files_sha256": "f7305f07447e75ab74e1b80b64514e5b3f3d7958d1228fdeb9eea1202a2092c3",
+        "max_seq_length": 128,
+        "model": "sentence-transformers/all-MiniLM-L12-v2",
+        "normalize": true,
+        "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+        "seed": 20261115
+      },
+      "device": "cpu",
+      "lexical_caches": {
+        "L0": {
+          "bytes": 7074792,
+          "cache_hit": false,
+          "file": "lexical-48b64369559addc7c2fb5e5c7c4a6f75c0de40d1909d42a851cac8aa42f2feb6.json",
+          "key": "48b64369559addc7c2fb5e5c7c4a6f75c0de40d1909d42a851cac8aa42f2feb6",
+          "note": "Serialized token view; postings rebuilt in memory"
+        },
+        "L1": {
+          "bytes": 7065782,
+          "cache_hit": false,
+          "file": "lexical-6ff354d71c3593120cf85b5f89fe0b22da10a88263b716c3addd221cb28a1428.json",
+          "key": "6ff354d71c3593120cf85b5f89fe0b22da10a88263b716c3addd221cb28a1428",
+          "note": "Serialized token view; postings rebuilt in memory"
+        }
+      },
+      "memory": {
+        "current_working_set_bytes": 531603456,
+        "logical_cpus": 8,
+        "measurement": "Windows GetProcessMemoryInfo",
+        "peak_working_set_bytes": 560709632
+      },
+      "model_load_seconds": 0.211905799806118,
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python": "3.13.14",
+      "query_tokens": {
+        "maximum": 36,
+        "minimum": 14,
+        "queries": 83,
+        "truncated": 0
+      },
+      "seed": 20261115
+    },
+    "validation": {
+      "dense_document_cache": {
+        "array_sha256": "49be8495d38a41be9c591d9294d37962ac1226705a7282adf834746539b5f358",
+        "bytes": 3694865,
+        "cache_hit": true,
+        "current_seconds": 0.039532499853521585,
+        "encode_seconds": 160.60710419993848,
+        "encoder": {
+          "dense_code_sha256": "4112920ceb819e9707cf744c313213f0a8d3c683d5859807d6795352cdacdf12",
+          "dependencies": {
+            "numpy": "2.5.4",
+            "sentence-transformers": "5.1.2",
+            "torch": "2.9.0+cpu",
+            "transformers": "4.57.1"
+          },
+          "device": "cpu",
+          "dimension": 384,
+          "files_sha256": "f7305f07447e75ab74e1b80b64514e5b3f3d7958d1228fdeb9eea1202a2092c3",
+          "max_seq_length": 128,
+          "model": "sentence-transformers/all-MiniLM-L12-v2",
+          "normalize": true,
+          "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+          "seed": 20261115
+        },
+        "key": "52e68b6d60d7e3a55312a6f1ab2b4d9e99f174289d34fbefffdb45874a1a33b3"
+      },
+      "dense_encoder": {
+        "dense_code_sha256": "4112920ceb819e9707cf744c313213f0a8d3c683d5859807d6795352cdacdf12",
+        "dependencies": {
+          "numpy": "2.5.4",
+          "sentence-transformers": "5.1.2",
+          "torch": "2.9.0+cpu",
+          "transformers": "4.57.1"
+        },
+        "device": "cpu",
+        "dimension": 384,
+        "files_sha256": "f7305f07447e75ab74e1b80b64514e5b3f3d7958d1228fdeb9eea1202a2092c3",
+        "max_seq_length": 128,
+        "model": "sentence-transformers/all-MiniLM-L12-v2",
+        "normalize": true,
+        "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+        "seed": 20261115
+      },
+      "device": "cpu",
+      "lexical_caches": {
+        "L0": {
+          "bytes": 7074792,
+          "cache_hit": true,
+          "file": "lexical-48b64369559addc7c2fb5e5c7c4a6f75c0de40d1909d42a851cac8aa42f2feb6.json",
+          "key": "48b64369559addc7c2fb5e5c7c4a6f75c0de40d1909d42a851cac8aa42f2feb6",
+          "note": "Serialized token view; postings rebuilt in memory"
+        },
+        "L1": {
+          "bytes": 7065782,
+          "cache_hit": true,
+          "file": "lexical-6ff354d71c3593120cf85b5f89fe0b22da10a88263b716c3addd221cb28a1428.json",
+          "key": "6ff354d71c3593120cf85b5f89fe0b22da10a88263b716c3addd221cb28a1428",
+          "note": "Serialized token view; postings rebuilt in memory"
+        }
+      },
+      "memory": {
+        "current_working_set_bytes": 608038912,
+        "logical_cpus": 8,
+        "measurement": "Windows GetProcessMemoryInfo",
+        "peak_working_set_bytes": 617095168
+      },
+      "model_load_seconds": 0.22678999998606741,
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python": "3.13.14",
+      "query_tokens": {
+        "maximum": 29,
+        "minimum": 16,
+        "queries": 30,
+        "truncated": 0
+      },
+      "seed": 20261115
+    }
+  },
+  "review_priority": "100/(1+best chunk rank) + 5 if source year differs from explicit question year; otherwise no year inference",
+  "run_integrity": {
+    "dev/BM25": {
+      "full_ranking_chunks": 2127,
+      "jsonl_sha256": "e96b16460df17af4eedc49bf6ae70a26fb98616b2fe67890b4caa43914f2d627",
+      "queries": 83,
+      "shared_scope_verified": true,
+      "top_text_records": 100
+    },
+    "dev/BM25_L1": {
+      "full_ranking_chunks": 2127,
+      "jsonl_sha256": "de92ea17ff36cdadb5a567526d76d63ff30247016f70e8f46a340e07481363cf",
+      "queries": 83,
+      "shared_scope_verified": true,
+      "top_text_records": 100
+    },
+    "dev/Dense": {
+      "full_ranking_chunks": 2127,
+      "jsonl_sha256": "687e05e92e86984a2be5c89758be161918151425f65c2b98ee3800ab605bb6e7",
+      "queries": 83,
+      "shared_scope_verified": true,
+      "top_text_records": 100
+    },
+    "dev/Hybrid": {
+      "full_ranking_chunks": 2127,
+      "jsonl_sha256": "7608f88e0ea5a4b71c0f3a235d5934d89d92a0085f475341902b0f76f4f76afa",
+      "queries": 83,
+      "shared_scope_verified": true,
+      "top_text_records": 100
+    },
+    "validation/BM25": {
+      "full_ranking_chunks": 2127,
+      "jsonl_sha256": "50ccb3457d6864fc1bd2599cb3b8297585cf61430140dbc0cc11863c2db87dcf",
+      "queries": 30,
+      "shared_scope_verified": true,
+      "top_text_records": 100
+    },
+    "validation/BM25_L1": {
+      "full_ranking_chunks": 2127,
+      "jsonl_sha256": "8a261beb5715eca951983e2fe5e3ebb1702ab8c67a81041025f98d96161c80fa",
+      "queries": 30,
+      "shared_scope_verified": true,
+      "top_text_records": 100
+    },
+    "validation/Dense": {
+      "full_ranking_chunks": 2127,
+      "jsonl_sha256": "fa3d82b70c657b0c304650e4d289dfcfe7796026f2ad6fe8fb6dbeb9469efcca",
+      "queries": 30,
+      "shared_scope_verified": true,
+      "top_text_records": 100
+    },
+    "validation/Hybrid": {
+      "full_ranking_chunks": 2127,
+      "jsonl_sha256": "9373e21c221422786de7645a4c807ec726e7fea248a5d6acb8537bba63ea58f4",
+      "queries": 30,
+      "shared_scope_verified": true,
+      "top_text_records": 100
+    }
+  },
+  "test_executed": false,
+  "truncation": {
+    "chunks": 2127,
+    "fraction_truncated": 0.919134931828867,
+    "input_tokens_max": 475,
+    "input_tokens_min": 22,
+    "input_tokens_p50": 320.0,
+    "input_tokens_p95": 386.6999999999998,
+    "total_discarded_tokens": 362573,
+    "total_input_tokens": 625100,
+    "truncated_chunks": 1955
+  }
+}

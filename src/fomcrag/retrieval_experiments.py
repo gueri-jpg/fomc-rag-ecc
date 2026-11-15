@@ -154,6 +154,8 @@ def run_phase3(root: Path, stage: str) -> dict:
     selected_path = root / "artifacts/phase3/dev_selection.json"
     # Refuse any validation execution until dev selection is persisted and bound.
     config_id = fingerprint(config)
+    if stage == "dev" and (root / "artifacts/phase3/validation/completed.json").exists():
+        raise ValueError("Validation already completed: no further dev selection in this experiment")
     if stage == "validation":
         if not selected_path.is_file():
             raise ValueError("Dev selection artifact required before validation")
