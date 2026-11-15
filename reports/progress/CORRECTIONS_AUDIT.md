@@ -41,6 +41,9 @@ chunking ou EDA. Le résultat de vérification phase 1 publié antérieurement e
 conservé; les logs courants restent sous artifacts, sans chemins personnels
 dans les rapports publics.
 
-Statut CI à ce commit : workflow préparé, commandes locales exécutées; le
-résultat GitHub Actions sera contrôlé après ouverture de la PR et documenté
-dans PHASE_2.md. Le succès distant n'est pas présumé.
+Au premier commit : workflow préparé et commandes locales exécutées.
+Mise à jour après publication : PR https://github.com/gueri-jpg/fomc-rag-ecc/pull/1
+ouverte sans fusion; job offline GitHub Actions réussi sur le commit de phase 2
+(run 43710152422). Le workflow exécute maintenant les six tests phase 0 et
+23 tests unitaires phase 2, sans source PDF ni dépendance de traitement PDF.
+Voir PHASE_2.md pour les résultats locaux complets et la vérification distante.

@@ -204,8 +204,20 @@ Les 279 qrels sont strictement identiques, y compris dans l'index avant push :
   suffisance des propositions de faits et six paraphrases signalées. Les
   annotations individuelles et exhaustivité ne sont pas inventées.
 
-La PR vers main sera ouverte sans fusion, après audit des fichiers indexés;
-URL et résultat CI distant consignés dans le suivi de publication ci-dessous.
+PR ouverte vers main, sans fusion : https://github.com/gueri-jpg/fomc-rag-ecc/pull/1.
+Commits distincts : 0f5d499 (corrections) et
+09c7cd62a95e2ddd6b0ecc8f5288c6e070f305e1 (phase 2). Main est restée sur a6bf5b1.
+La CI GitHub Actions du commit de phase 2 a effectivement réussi : job offline,
+run https://github.com/gueri-jpg/fomc-rag-ecc/actions/runs/43710152422,
+installation minimale et tests sans corpus réussis sous Python 3.13.
+Un commit de documentation consigne ensuite cette PR et ce résultat observé.
+Le connecteur GitHub refusait la création de PR (403, permission d'intégration);
+la PR a été créée via l'API avec l'authentification Git Credential Manager
+existante, credential en mémoire seulement, jamais affiché ni enregistré.
+49 fichiers de phase 2 ont été indexés explicitement et contrôlés : audit
+sécurité PASS, aucune erreur d'espaces, aucun fichier >5 Mio (maximum 406 815
+octets), aucun contenu PDF, secret ou chemin personnel. Les qrels d'origine
+et le code baseline ont aussi été comparés à main : aucune différence.
 Les PDF, secrets, venv, corpus généré, poids et références privées restent
 exclus; seuls IDs/offsets et diagnostics légers sont publiés. Aucun force-push.
 **Arrêt après phase 2 : aucun BM25/Dense/Hybrid, reranker, LLM ou Streamlit lancé.**
