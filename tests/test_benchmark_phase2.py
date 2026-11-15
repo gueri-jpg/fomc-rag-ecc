@@ -2,6 +2,7 @@
 import pytest
 from copy import deepcopy
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -83,13 +84,15 @@ def test_evaluator_applies_embargo_before_requiring_predictions():
         predictions = Path(directory) / "synthetic.jsonl"
         predictions.write_text("\n".join(json.dumps({"question_id": q["question_id"], "retrieved": [
             {"chunk_id": "synthetic-candidate", "page_id": "synthetic-page"}]}) for q in selected), encoding="utf-8")
-        command = [sys.executable, str(ROOT / "evaluation/benchmark/evaluate_retrieval.py"),
+        # Disable installed-package/.pth assistance, as in a minimal public clone.
+        env = dict(os.environ, PYTHONPATH=str(ROOT / "src"))
+        command = [sys.executable, "-S", str(ROOT / "evaluation/benchmark/evaluate_retrieval.py"),
                    "--predictions", str(predictions), "--convention", "page-coverage-from-chunk@k"]
-        run = subprocess.run(command, capture_output=True, text=True, check=True)
+        run = subprocess.run(command, capture_output=True, text=True, check=True, env=env)
         summary = json.loads(run.stdout)
         assert summary["questions"] == 83
         require_tuning_eligible(summary["selection"], policy)
-        diagnostic = subprocess.run(command + ["--purpose", "diagnostic"], capture_output=True, text=True)
+        diagnostic = subprocess.run(command + ["--purpose", "diagnostic"], capture_output=True, text=True, env=env)
         assert diagnostic.returncode != 0 and "Missing predictions for 2 questions" in diagnostic.stderr
 
 

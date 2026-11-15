@@ -294,3 +294,11 @@ sélectionnés, sans secret, chemin personnel ou fichier interdit détecté.
 
 Mise à jour sur feature/benchmark-alignment, PR #1 uniquement : aucune fusion
 et aucune phase 3. Les constats d'audit ne sont pas effacés par cette décision.
+
+Suivi CI de la revue : le premier lancement distant sur 829a499 a révélé un
+échec du nouveau test CLI (42 succès, un échec). Le sous-processus dépendait
+de l'installation éditable locale, contrairement au runner minimal. Le cas a
+été reproduit avec le Python du venv en mode -S : ModuleNotFoundError pour
+fomcrag. Le test fournit désormais explicitement PYTHONPATH=src et utilise -S
+pour garantir son indépendance des paquets installés/.pth; toutes ses assertions
+d'embargo et de refus des diagnostics incomplets sont maintenues.
