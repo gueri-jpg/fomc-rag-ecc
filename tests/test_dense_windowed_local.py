@@ -14,6 +14,8 @@ def test_real_chain_parity_coverage_cache_and_invalidation():
     old = json.loads((ROOT / "configs/retrieval_phase3.json").read_text())
     config = json.loads((ROOT / "configs/retrieval_phase3_extension.json").read_text())
     encoder = WindowedEncoder(ROOT, old["dense"], config["seed"], config["window"])
+    import torch
+    assert next(encoder.model.parameters()).dtype == torch.float32
     texts = ["No rate change on 2021-01-27: 5.25%, not 5.5%; ﬁnancial ﬂows."] + ["inflation "*n for n in (0, 1, 125, 126, 127, 254, 500)]
     ids = [f"synthetic-window-{i}" for i in range(len(texts))]
     base = ROOT / "artifacts/test-windowed"

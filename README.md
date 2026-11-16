@@ -210,6 +210,35 @@ See [retrieval protocol](docs/retrieval_methodology.md),
 [error analysis](reports/retrieval_phase3/ERROR_ANALYSIS.md) and the
 [complete phase-3 report](reports/progress/PHASE_3.md).
 
+## Phase 3B: controlled review and complete-token Dense
+
+The original phase-3 outputs remain immutable. The separate extension uses
+the same MiniLM checkpoint with 126 content tokens per window, overlap 32,
+mean of normalized window embeddings and final L2 normalization. BM25/RRF
+parameters remain fixed. Validation is descriptive because it was already
+observed in phase 3; test remains locked.
+
+The supplied 3,731 lexical suggestions are **not human judgments**. Original
+review sheets stay local; imports wait for real attested group decisions.
+No augmented reference is created from automatic proposals. See
+[review protocol](docs/annotation_pool_review.md),
+[window methodology](docs/dense_windowing_methodology.md) and
+[extension report](reports/progress/PHASE_3_EXTENSION.md).
+
+```powershell
+& .venv\Scripts\python.exe scripts/review_annotations_phase3b.py
+& .venv\Scripts\python.exe scripts/run_phase3_extension.py --stage dev
+& .venv\Scripts\python.exe scripts/run_phase3_extension.py --stage validation
+& .venv\Scripts\python.exe scripts/report_phase3_extension.py
+```
+
+These commands require the original local phase-3 artifacts, restored corpus
+and locked checkpoint. On completed experiments run only the report command:
+the inference CLI refuses repeated validation or further dev selection.
+New artifacts stay in `artifacts/phase3_extension/`; lightweight seed diagnostics
+and additional UNJUDGED review candidates are under
+`reports/retrieval_phase3_extension/`. No new dependencies are needed.
+
 ## Progress
 
 | Phase | Status |
@@ -218,6 +247,7 @@ See [retrieval protocol](docs/retrieval_methodology.md),
 | 1 — Corpus, extraction, preprocessing, EDA, chunking | Complete |
 | 2 — Benchmark alignment | Merged via PR #1; targeted dev embargo adopted |
 | 3 — Retrieval | Implemented and measured on 83 dev / 30 validation; new judgments pending |
+| 3B — Full-token Dense and controlled review | Measured on seed only; 111 local / 84 offline tests; human decisions pending |
 | 4 — Reranking | Not started |
 | 5 — Grounded RAG generation | Not started |
 | 6 — Evaluation and error analysis | Not started |

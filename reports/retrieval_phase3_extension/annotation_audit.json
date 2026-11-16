@@ -16,6 +16,7 @@
       "scope": "Substring comparison, not semantic proof; local PyMuPDF 1.28.2 versus supplied 1.26.7"
     }
   },
+  "historical_pool_git_blob_sha": "bab99a1d7d051348e1158e99979953331984985a",
   "human_import_status": "WAITING_FOR_HUMAN_VALIDATION",
   "manifest_files_verified": {
     "00_REVUE_COLLABORATIVE_3731.xlsx": "dc7e7103999d0f5b02c7ed0351a00e542fbcaafccc2e6c832cb566a9f5315a46",

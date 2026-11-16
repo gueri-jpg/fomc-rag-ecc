@@ -4,6 +4,7 @@ from __future__ import annotations
 from collections import Counter
 import csv
 from datetime import date
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -74,6 +75,10 @@ def audit_pack(root: Path, pack: Path) -> dict:
                 raise ValueError("Pack hash mismatch: " + filename)
             verified[filename] = digest
     queue = read_csv(root / "reports/retrieval_phase3/new_pages_review_queue.csv")
+    queue_bytes = (root / "reports/retrieval_phase3/new_pages_review_queue.csv").read_bytes()
+    blob = hashlib.sha1(b"blob " + str(len(queue_bytes)).encode("ascii") + b"\0" + queue_bytes).hexdigest()
+    if blob != manifest["pool_git_blob_sha"]:
+        raise ValueError("Historical Git blob differs from pack provenance")
     universe = unique_pairs(read_csv(pack / "03_UNIVERS_ATTENDU_3731.csv"))
     if len(universe) != 3731 or universe != unique_pairs(queue):
         raise ValueError("Pack differs from the exact historical 3731-pair pool")
@@ -99,6 +104,9 @@ def audit_pack(root: Path, pack: Path) -> dict:
             q, p = row["question_id"], row["page_id"]
             if row["split"] != queries[q]["split"] or row["question"] != queries[q]["question"]:
                 raise ValueError("Changed question/split in pack")
+            if (Path(row["source_pdf"]).name != pages[p]["document"] or int(row["physical_page"]) != pages[p]["page"]
+                    or int(row["year"]) != pages[p]["year"]):
+                raise ValueError("Incorrect pack source metadata")
             excerpt, text = row["page_excerpt_FOR_CONTEXT_NOT_PROOF"], pages[p]["text"]
             literal += excerpt in text
             compact += re.sub(r"\s+", "", excerpt) in re.sub(r"\s+", "", text)
@@ -112,12 +120,19 @@ def audit_pack(root: Path, pack: Path) -> dict:
     info = dict(status="PASS", human_import_status="WAITING_FOR_HUMAN_VALIDATION", validated_decisions=len(decisions),
         universe=3731, questions=113, split_counts=dict(splits), pages_in_corpus=len(pages), manifest_files_verified=verified,
         universe_sha256=fingerprint(sorted(universe)), excerpt_comparisons=sources, workbook_rows=workbook_rows,
+        historical_pool_git_blob_sha=blob,
         augmented_metrics_status="NOT_RUN_NO_HUMAN_LABELS", suggestions_used_as_qrels=False)
     write_json(root / "reports/retrieval_phase3_extension/annotation_audit.json", info)
     return info
 
 
 def consolidate(root: Path, pack: Path, sheet: Path, attestation_path: Path | None, require_complete=False) -> dict:
+    for name, digest in {
+        "qrels_group_confirmed_PAGES.csv":"d550fdf524af81111504efad0c44dc25ad36b48d4f32007f1808953d16d187cb",
+        "qrels_group_confirmed_PAGES.trec":"9c6080cf08a34361162ffcd57ec187f2e20118ceca19c4e226f742ac7e8e8682",
+    }.items():
+        if file_hash(root/"evaluation/benchmark"/name) != digest:
+            raise ValueError("Original source judgments changed")
     universe = unique_pairs(read_csv(pack / "03_UNIVERS_ATTENDU_3731.csv"))
     if universe != unique_pairs(read_csv(root / "reports/retrieval_phase3/new_pages_review_queue.csv")):
         raise ValueError("Unrecognized review universe")
@@ -141,8 +156,8 @@ def consolidate(root: Path, pack: Path, sheet: Path, attestation_path: Path | No
     info = dict(status="HUMAN_DECISIONS_CONSOLIDATED_NOT_GOLD", seed_retained=len(seed), added=len(combined)-len(seed),
         pending=len(universe)-len(decisions), new_grades=dict(Counter(r["relevance_grade"] for r in decisions)),
         sheet_sha256=file_hash(sheet), attestation_sha256=file_hash(attestation_path), output_sha256=file_hash(target), exhaustive=False)
-    reviewed = [r for r in read_csv(sheet) if r.get("group_validation_status") == "VALIDATED_BY_GROUP"]
+    reviewed = [r for r in read_csv(sheet) if r.get("group_validation_status", "").strip() == "VALIDATED_BY_GROUP"]
     info["attested_reviewer_count"] = len({r[k].strip() for r in reviewed for k in ("reviewer_1_id", "reviewer_2_id") if r.get(k, "").strip()})
-    info["documented_disagreements"] = sum(bool(r.get("reviewer_2_grade")) and r["reviewer_1_grade"] != r["reviewer_2_grade"] for r in reviewed)
+    info["documented_disagreements"] = sum(bool(r.get("reviewer_2_grade", "").strip()) and r["reviewer_1_grade"].strip() != r["reviewer_2_grade"].strip() for r in reviewed)
     write_json(directory / "manifest.json", info)
     return info

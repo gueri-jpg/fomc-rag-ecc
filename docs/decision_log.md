@@ -71,3 +71,27 @@
 - D23 : poids/index/rankings textuels locaux ; tableaux, graphiques et file
   de revue légers publiables après audit. PR séparée sans fusion automatique.
   Aucune phase 4, génération, application ou expérience test commencée.
+
+## Extension 3B — 16 novembre 2026
+
+- D24 : PR #2 confirmée ouverte/non fusionnée ; continuer feature/retrieval,
+  conserver les commits et sorties historiques. Snapshot SHA de 71 fichiers
+  locaux avant travail, y compris les caches, classements et rapports originaux.
+- D25 : traiter le pack V2 comme aide de revue non humaine. Vérifier ses SHA,
+  les 3 731 clés et le blob historique ; feuille entièrement pending. Attendre
+  une véritable attestation liée à la feuille avant consolidation. Ne pas
+  utiliser ses propositions 0/1/2 en métrique ou en tuning. Infrastructure
+  enregistrée dans dc6b1dd ; aucune note humaine nouvelle intégrée.
+- D26 : variante fixe DenseWindowMean préenregistrée dans 9bc9477 avant tout
+  calcul de corpus : limite 128, 126 tokens de contenu, overlap 32 tokens,
+  moyenne des fenêtres normalisées puis L2, mêmes IDs. Pas de MaxSim ni grille.
+  Chaîne complète et parité single-window vérifiées sur le vrai checkpoint.
+- D27 : BM25 L0, Dense128 et Hybrid128 relus depuis leurs artefacts immuables.
+  Nouveaux DenseWindowMean/HybridWindowMean, k RRF=10 et profondeur=100 inchangés.
+  Dev=83 ; scellement avant une seule validation descriptive de 30 besoins.
+  L'observation antérieure de validation limite son indépendance ; aucun
+  paramètre nouveau ne sera choisi à partir de ces scores. Test fermé.
+- D28 : série seed séparée ; série augmentée NOT_RUN_NO_HUMAN_LABELS tant
+  que les humains n'ont pas fourni de décisions réelles. Nouveaux couples
+  hors du pool original et des seed restent UNJUDGED. Aucun gain ne démontre
+  causalement l'effet de la couverture seule, car l'agrégation change aussi.

@@ -41,7 +41,7 @@ def audit_staged():
         if data.startswith(b"%PDF"):
             findings.append({"path": name, "reason": "pdf_content"})
         if suffix == ".png":
-            if not data.startswith(b"\x89PNG\r\n\x1a\n") or not name.startswith(("reports/figures/phase1_", "reports/figures/phase3_")):
+            if not data.startswith(b"\x89PNG\r\n\x1a\n") or not name.startswith(("reports/figures/phase1_", "reports/figures/phase3_", "reports/retrieval_phase3_extension/phase3b_")):
                 findings.append({"path": name, "reason": "unapproved_image"})
             continue
         try:

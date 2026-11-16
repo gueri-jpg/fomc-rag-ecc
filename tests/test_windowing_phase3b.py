@@ -27,3 +27,14 @@ def test_extension_forbids_reserved_questions(stage):
     from fomcrag.phase3_extension import run_extension
     with pytest.raises(ValueError, match="prohibits"):
         run_extension(Path("absent"), stage)
+
+
+def test_window_encoder_never_accepts_labels_or_imports_benchmark():
+    import ast
+    import inspect
+    from fomcrag import dense_windowed
+    with pytest.raises(TypeError):
+        dense_windowed.WindowedEncoder.query(object(), {"question":"q", "answer":"forbidden"})
+    tree = ast.parse(inspect.getsource(dense_windowed))
+    forbidden = {"annotation_review", "selection", "pooling", "benchmark", "retrieval_evaluation", "phase3_extension"}
+    assert not any(isinstance(node, ast.ImportFrom) and node.module in forbidden for node in ast.walk(tree))
