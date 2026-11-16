@@ -1,0 +1,23 @@
+{
+  "baseline_chunks": 2127,
+  "changed_files": [],
+  "comparison": "phase2 local pre-run snapshot",
+  "files_verified": {
+    "data/processed/chunks_128.jsonl": "9323d8b332ee46e5ceec2df975175db10081ed2a64f295953194f7cdf62012f1",
+    "data/processed/chunks_256.jsonl": "0489ac8494e25d06b282548f55a4c845c1be2a64f1dbf45a9987145ab049cbb5",
+    "data/processed/chunks_512.jsonl": "5f9c34c213cb07bf9dbd263a0ac6c378130db512e6ce03808a37ba7782c2673e",
+    "data/processed/documents.jsonl": "6d8adc9fa1d3216050dd5ca6521797b9c069a9e4aeabd1a98e2ebcf88d31cfb3",
+    "data/processed/extraction_issues.jsonl": "d6eb58db1c0417bcd56a8b6c1c250af007539f83af6428e910d496d7c2fd5248",
+    "data/processed/manifest.json": "b2fede6ec619f18e8982c10a93cb7c7fc5481262ff300c8c6dce6f7bf4135f2a",
+    "data/processed/page_chunk_map_128.jsonl": "a4b7bb8cef52ead4a1f8de263b62333c368972cc9a3b66c2be2f91c83865e29b",
+    "data/processed/page_chunk_map_256.jsonl": "c3ec6f80a092b15f6c87678fe7818b11cc1e7d656427300ebe8655e89df52dda",
+    "data/processed/page_chunk_map_512.jsonl": "0b300304afd33221622af02bda197002272b98c133f4463d1f963eda82326b8c",
+    "data/processed/pages.jsonl": "93390210a71012a6ffad438b5e278118dd33c9dcdb7f4c20fafe3db13dff58aa",
+    "evaluation/benchmark/qrels_group_confirmed_PAGES.csv": "d550fdf524af81111504efad0c44dc25ad36b48d4f32007f1808953d16d187cb",
+    "evaluation/benchmark/qrels_group_confirmed_PAGES.trec": "9c6080cf08a34361162ffcd57ec187f2e20118ceca19c4e226f742ac7e8e8682"
+  },
+  "pdfs_sha256_verified": 93,
+  "physical_pages": 838,
+  "qrels_pairs": 279,
+  "status": "PASS"
+}

@@ -1,0 +1,48 @@
+{
+  "augmented_metrics_status": "NOT_RUN_NO_HUMAN_LABELS",
+  "excerpt_comparisons": {
+    "01_PROPOSITIONS_AUTOMATIQUES_NON_HUMAINES_3731.csv": {
+      "excerpt_literal_in_local_page": 1708,
+      "excerpt_whitespace_insensitive_in_local_page": 3731,
+      "not_literal": 2023,
+      "rows": 3731,
+      "scope": "Substring comparison, not semantic proof; local PyMuPDF 1.28.2 versus supplied 1.26.7"
+    },
+    "07_PRENOTATIONS_LEXICALES_3731_NON_HUMAINES.csv": {
+      "excerpt_literal_in_local_page": 1708,
+      "excerpt_whitespace_insensitive_in_local_page": 3731,
+      "not_literal": 2023,
+      "rows": 3731,
+      "scope": "Substring comparison, not semantic proof; local PyMuPDF 1.28.2 versus supplied 1.26.7"
+    }
+  },
+  "historical_pool_git_blob_sha": "bab99a1d7d051348e1158e99979953331984985a",
+  "human_import_status": "WAITING_FOR_HUMAN_VALIDATION",
+  "manifest_files_verified": {
+    "00_REVUE_COLLABORATIVE_3731.xlsx": "dc7e7103999d0f5b02c7ed0351a00e542fbcaafccc2e6c832cb566a9f5315a46",
+    "01_PROPOSITIONS_AUTOMATIQUES_NON_HUMAINES_3731.csv": "cfee9b9dc121ef48723310ee8cc8c163e47f526cb847b276f53aff559fa2d656",
+    "02_FEUILLE_DE_VALIDATION_GROUPE_3731.csv": "ace3907c09c32e2568bcb6cec5e2a115dabfb89a4a974daa012c1f7ca87f60bf",
+    "03_UNIVERS_ATTENDU_3731.csv": "9e34c8d8abf7fe7425904de8e5a76eb7f3888d9a80e736a7b86fecbe6c38fe5e",
+    "04_REVUE_PRIORITAIRE_250.csv": "8702ef256ff6d933ae4c0530c3bcc9d908c790ceefef2344d8dee36d3aea7fd9",
+    "06_EXPORTER_JUGEMENTS_VALIDES.py": "59bc98a07befb5766cd3e12ff216230ded7a3e13af67136ecd8854db8fcc8fa5",
+    "07_PRENOTATIONS_LEXICALES_3731_NON_HUMAINES.csv": "ff122af57045431ef433adb3d35405d0dc78b499487c28f8c975b9b320071c3f",
+    "08_RESUME_PRENOTATIONS.json": "6ca5310a5bbaac7301ec49cecc244cb7241bb51b01e08e0ecc5419565339b3b2",
+    "PROMPT_CODEX_PHASE_3B_REVISE_COMPLET.md": "dace69bc56d8b6ef8992aa276e2219ea456c8570b536cfdec25911058f1a79fb",
+    "README_LIRE_AVANT.md": "4bd9b6c31cdcd28b99022b2df4d824a72527998832948c9bfbdd010c00529230"
+  },
+  "pages_in_corpus": 838,
+  "questions": 113,
+  "split_counts": {
+    "dev": 2756,
+    "validation": 975
+  },
+  "status": "PASS",
+  "suggestions_used_as_qrels": false,
+  "universe": 3731,
+  "universe_sha256": "ce09eeaae2063d9f3bc84d308e8d07df451bc4dc18a579147d12182a229e6137",
+  "validated_decisions": 0,
+  "workbook_rows": {
+    "xl/worksheets/sheet1.xml": 9,
+    "xl/worksheets/sheet2.xml": 3732
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "augmented_metrics_status": "NOT_RUN_NO_HUMAN_LABELS",
+  "bootstrap_repeats": 2000,
+  "historical_integrity": {
+    "files": 71,
+    "snapshot_sha256": "9ed9dc9252882802f7a62946fd6125660c3bee8b4111ecd84a6a1d884b0772e9",
+    "status": "PASS"
+  },
+  "human_import_status": "WAITING_FOR_HUMAN_VALIDATION",
+  "judgments_exhaustive": false,
+  "new_run_files_sha256": {
+    "artifacts/phase3_extension/dev/DenseWindowMean.jsonl": "48743ff2a118f1965596f5c64f027e51e285f5b7a35b53d61c96e22cf66b1503",
+    "artifacts/phase3_extension/dev/DenseWindowMean_complete.npz": "5c4cc1802b22f809b3d6bb8dfae3f651aeb475e599e0ab0670e05ba4eaa102f9",
+    "artifacts/phase3_extension/dev/DenseWindowMean_metadata.json": "a39ce45a1d9784afd11e53b2fa9d72d7e0efafadd9ddf9258a29bf5e9994ab9e",
+    "artifacts/phase3_extension/dev/HybridWindowMean.jsonl": "7ae238475d2e047d591dbfdbbbceead9cf614a687db9ea556a3f19ea1e5fe72a",
+    "artifacts/phase3_extension/dev/HybridWindowMean_complete.npz": "fda050583bba3224346924bdb275d20f1f07fb8ac537e6e4d1a9a236d0139000",
+    "artifacts/phase3_extension/dev/HybridWindowMean_metadata.json": "5feabdec4d843f8db87327c9127718789d54de6307c817c2b725843189ceecae",
+    "artifacts/phase3_extension/dev/completed.json": "899265350e60711db4b559456c386e89454eaf331cce3190ff4ffc8b56b88f1d",
+    "artifacts/phase3_extension/dev/new_methods_top20_chunk_pool.jsonl": "568661eca24a3e37c357aa0a1f90dc8c4a1e4723ee3efe852aaf90031cd2d643",
+    "artifacts/phase3_extension/dev/new_methods_top20_page_pool.jsonl": "d5ae3936daac7413bb3f8d6d12d76f5a5a1ddc536be5009272f7c7ccf05a856e",
+    "artifacts/phase3_extension/dev/resources.json": "9f4b0b739146f6ef4c2dba710ad17e019d1bfde5cd2526571f69c508852301e7",
+    "artifacts/phase3_extension/dev/started.json": "67ad03075d0dfffa18b73e8b2455bf98c70b2055bdd87d396996426d55cec00a",
+    "artifacts/phase3_extension/validation/DenseWindowMean.jsonl": "30a04208a7738fba9a5235c52e8f8cc1aa11195db1d4c3406bd0a1a0fb7c4878",
+    "artifacts/phase3_extension/validation/DenseWindowMean_complete.npz": "32e29bce2871f228a970e500852d35bb326ce7fd05a935758fecd0d069b1e2ae",
+    "artifacts/phase3_extension/validation/DenseWindowMean_metadata.json": "5fa3354721eabe5d8c3d94d3533183062709d9acdc9a4e2913bea5a56cfb9410",
+    "artifacts/phase3_extension/validation/HybridWindowMean.jsonl": "2665bd4740479b04e2f05bbf5b89788655f8d0146ab87423e52bc86820fc1587",
+    "artifacts/phase3_extension/validation/HybridWindowMean_complete.npz": "bc1ae5965967e3f92547553dc4b8e316b3022114a9e524beb0ac99f65e688dd8",
+    "artifacts/phase3_extension/validation/HybridWindowMean_metadata.json": "c90d5e67371c64809bdef6a8415523f404044015968f70e15f998ef40317714b",
+    "artifacts/phase3_extension/validation/completed.json": "d5d64d09df5b0adb4af9d6246bb41902c8cecea9096f887f921513d71debbb77",
+    "artifacts/phase3_extension/validation/new_methods_top20_chunk_pool.jsonl": "2ffa5408c5792520256c2916acd666938b2be2e5f9cbeac009c2a22f83c78e24",
+    "artifacts/phase3_extension/validation/new_methods_top20_page_pool.jsonl": "666135d3a6d93e8b511bd08126fdf6ecd7b57bcfd582c91ee640354a0e50aeee",
+    "artifacts/phase3_extension/validation/resources.json": "95dbf19f01cf84b8a1452cf6ad1eac648d013ad185cb3e62a9cea353b3b3e375",
+    "artifacts/phase3_extension/validation/started.json": "f8faf0d1debbfb223bc3f0a18f8a12a0965bc5163be13ac34289b72966c80af2"
+  },
+  "new_unjudged_pairs": 1047,
+  "pools": {
+    "dev": {
+      "already_seed_judged": 70,
+      "chunk_candidates": 2345,
+      "original_pool_retained": 2756,
+      "outside_original_pool_and_seed": 796,
+      "page_candidates": 2166
+    },
+    "validation": {
+      "already_seed_judged": 25,
+      "chunk_candidates": 847,
+      "original_pool_retained": 975,
+      "outside_original_pool_and_seed": 251,
+      "page_candidates": 768
+    }
+  },
+  "resources": {
+    "dev": {
+      "dense_cache": {
+        "array_sha256": "2fec86fea91bac5416d8e95a3d5035b94105dce92437ab8e8ad161420547227c",
+        "bytes": 4274851,
+        "cache_hit": false,
+        "current_seconds": 687.2371978000738,
+        "encode_seconds": 687.1198811999056,
+        "encoder": {
+          "content_capacity": 126,
+          "corpus_manifest_sha256": "b2fede6ec619f18e8982c10a93cb7c7fc5481262ff300c8c6dce6f7bf4135f2a",
+          "dense_code_sha256": "4112920ceb819e9707cf744c313213f0a8d3c683d5859807d6795352cdacdf12",
+          "dependencies": {
+            "numpy": "2.5.4",
+            "sentence-transformers": "5.1.2",
+            "torch": "2.9.0+cpu",
+            "transformers": "4.57.1"
+          },
+          "device": "cpu",
+          "dimension": 384,
+          "files_sha256": "f7305f07447e75ab74e1b80b64514e5b3f3d7958d1228fdeb9eea1202a2092c3",
+          "max_seq_length": 128,
+          "model": "sentence-transformers/all-MiniLM-L12-v2",
+          "normalize": true,
+          "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+          "seed": 20261115,
+          "special_tokens": 2,
+          "tokenizer_files": {
+            "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+            "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+            "tokenizer_config.json": "fba7637034542f691ef4b1ad735d664971e8d9723012a1973d4ee985742e8e72",
+            "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+          },
+          "tokenizer_version": "0.22.2",
+          "window": {
+            "aggregation": "mean_unit_windows_then_l2",
+            "batch_size": 16,
+            "dtype": "float32",
+            "max_seq_length": 128,
+            "overlap_content_tokens": 32
+          },
+          "window_code_sha256": "bde1f1775532bbc28ec0aa3e52a3506240628fee1f3cdd5a39e7b4ca3e5ee412"
+        },
+        "key": "0fbf79adc68e380768d8e93a8124f4cb9f9e8bb40f4c0055618635287187459d",
+        "lost_content_tokens": 0,
+        "max_prepared_tokens": 128,
+        "windows_total": 7021
+      },
+      "encoder": {
+        "content_capacity": 126,
+        "corpus_manifest_sha256": "b2fede6ec619f18e8982c10a93cb7c7fc5481262ff300c8c6dce6f7bf4135f2a",
+        "dense_code_sha256": "4112920ceb819e9707cf744c313213f0a8d3c683d5859807d6795352cdacdf12",
+        "dependencies": {
+          "numpy": "2.5.4",
+          "sentence-transformers": "5.1.2",
+          "torch": "2.9.0+cpu",
+          "transformers": "4.57.1"
+        },
+        "device": "cpu",
+        "dimension": 384,
+        "files_sha256": "f7305f07447e75ab74e1b80b64514e5b3f3d7958d1228fdeb9eea1202a2092c3",
+        "max_seq_length": 128,
+        "model": "sentence-transformers/all-MiniLM-L12-v2",
+        "normalize": true,
+        "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+        "seed": 20261115,
+        "special_tokens": 2,
+        "tokenizer_files": {
+          "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+          "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+          "tokenizer_config.json": "fba7637034542f691ef4b1ad735d664971e8d9723012a1973d4ee985742e8e72",
+          "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+        },
+        "tokenizer_version": "0.22.2",
+        "window": {
+          "aggregation": "mean_unit_windows_then_l2",
+          "batch_size": 16,
+          "dtype": "float32",
+          "max_seq_length": 128,
+          "overlap_content_tokens": 32
+        },
+        "window_code_sha256": "bde1f1775532bbc28ec0aa3e52a3506240628fee1f3cdd5a39e7b4ca3e5ee412"
+      },
+      "historical_bm25_latency_reused": true,
+      "memory": {
+        "current_working_set_bytes": 360849408,
+        "logical_cpus": 8,
+        "measurement": "Windows GetProcessMemoryInfo",
+        "peak_working_set_bytes": 657973248
+      },
+      "model_load_seconds": 0.489380800165236,
+      "window_count_histogram": {
+        "1": 172,
+        "2": 186,
+        "3": 638,
+        "4": 1092,
+        "5": 39
+      },
+      "window_stats": {
+        "chunks": 2127,
+        "content_tokens": 620846,
+        "fully_covered_chunks": 2127,
+        "lost_content_tokens": 0,
+        "maximum": 5,
+        "mean": 3.300893276915844,
+        "p95": 4.0,
+        "total": 7021
+      }
+    },
+    "validation": {
+      "dense_cache": {
+        "array_sha256": "2fec86fea91bac5416d8e95a3d5035b94105dce92437ab8e8ad161420547227c",
+        "bytes": 4274851,
+        "cache_hit": true,
+        "current_seconds": 1.3668874998111278,
+        "encode_seconds": 687.1198811999056,
+        "encoder": {
+          "content_capacity": 126,
+          "corpus_manifest_sha256": "b2fede6ec619f18e8982c10a93cb7c7fc5481262ff300c8c6dce6f7bf4135f2a",
+          "dense_code_sha256": "4112920ceb819e9707cf744c313213f0a8d3c683d5859807d6795352cdacdf12",
+          "dependencies": {
+            "numpy": "2.5.4",
+            "sentence-transformers": "5.1.2",
+            "torch": "2.9.0+cpu",
+            "transformers": "4.57.1"
+          },
+          "device": "cpu",
+          "dimension": 384,
+          "files_sha256": "f7305f07447e75ab74e1b80b64514e5b3f3d7958d1228fdeb9eea1202a2092c3",
+          "max_seq_length": 128,
+          "model": "sentence-transformers/all-MiniLM-L12-v2",
+          "normalize": true,
+          "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+          "seed": 20261115,
+          "special_tokens": 2,
+          "tokenizer_files": {
+            "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+            "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+            "tokenizer_config.json": "fba7637034542f691ef4b1ad735d664971e8d9723012a1973d4ee985742e8e72",
+            "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+          },
+          "tokenizer_version": "0.22.2",
+          "window": {
+            "aggregation": "mean_unit_windows_then_l2",
+            "batch_size": 16,
+            "dtype": "float32",
+            "max_seq_length": 128,
+            "overlap_content_tokens": 32
+          },
+          "window_code_sha256": "bde1f1775532bbc28ec0aa3e52a3506240628fee1f3cdd5a39e7b4ca3e5ee412"
+        },
+        "key": "0fbf79adc68e380768d8e93a8124f4cb9f9e8bb40f4c0055618635287187459d",
+        "lost_content_tokens": 0,
+        "max_prepared_tokens": 128,
+        "windows_total": 7021
+      },
+      "encoder": {
+        "content_capacity": 126,
+        "corpus_manifest_sha256": "b2fede6ec619f18e8982c10a93cb7c7fc5481262ff300c8c6dce6f7bf4135f2a",
+        "dense_code_sha256": "4112920ceb819e9707cf744c313213f0a8d3c683d5859807d6795352cdacdf12",
+        "dependencies": {
+          "numpy": "2.5.4",
+          "sentence-transformers": "5.1.2",
+          "torch": "2.9.0+cpu",
+          "transformers": "4.57.1"
+        },
+        "device": "cpu",
+        "dimension": 384,
+        "files_sha256": "f7305f07447e75ab74e1b80b64514e5b3f3d7958d1228fdeb9eea1202a2092c3",
+        "max_seq_length": 128,
+        "model": "sentence-transformers/all-MiniLM-L12-v2",
+        "normalize": true,
+        "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+        "seed": 20261115,
+        "special_tokens": 2,
+        "tokenizer_files": {
+          "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+          "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+          "tokenizer_config.json": "fba7637034542f691ef4b1ad735d664971e8d9723012a1973d4ee985742e8e72",
+          "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+        },
+        "tokenizer_version": "0.22.2",
+        "window": {
+          "aggregation": "mean_unit_windows_then_l2",
+          "batch_size": 16,
+          "dtype": "float32",
+          "max_seq_length": 128,
+          "overlap_content_tokens": 32
+        },
+        "window_code_sha256": "bde1f1775532bbc28ec0aa3e52a3506240628fee1f3cdd5a39e7b4ca3e5ee412"
+      },
+      "historical_bm25_latency_reused": true,
+      "memory": {
+        "current_working_set_bytes": 584990720,
+        "logical_cpus": 8,
+        "measurement": "Windows GetProcessMemoryInfo",
+        "peak_working_set_bytes": 584990720
+      },
+      "model_load_seconds": 0.5960039000492543,
+      "window_count_histogram": {
+        "1": 172,
+        "2": 186,
+        "3": 638,
+        "4": 1092,
+        "5": 39
+      },
+      "window_stats": {
+        "chunks": 2127,
+        "content_tokens": 620846,
+        "fully_covered_chunks": 2127,
+        "lost_content_tokens": 0,
+        "maximum": 5,
+        "mean": 3.300893276915844,
+        "p95": 4.0,
+        "total": 7021
+      }
+    }
+  },
+  "seed_qrels_sha256": "9c6080cf08a34361162ffcd57ec187f2e20118ceca19c4e226f742ac7e8e8682",
+  "status": "COMPLETED_SEED_ONLY",
+  "test_executed": false,
+  "validation_independent": false
+}

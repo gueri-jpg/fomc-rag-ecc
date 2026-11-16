@@ -18,7 +18,7 @@ NOT evidence-span/chunk metrics. Duplicate pages get credited only once.
 import argparse,collections,csv,json,math,sys
 from pathlib import Path
 from fomcrag.metrics import CONVENTIONS, select_budget
-from fomcrag.selection import PURPOSES, load_selection_inputs, select_questions
+from fomcrag.selection import PURPOSES, load_selection_inputs, select_questions, require_test_authorization
 
 ROOT=Path(__file__).resolve().parent
 
@@ -63,6 +63,7 @@ def main():
  ap.add_argument('--mode',choices=['silver','gold'],default='silver')
  ap.add_argument('--split',choices=['dev','validation','test','all'],default='dev')
  ap.add_argument('--purpose',choices=PURPOSES,default='tuning')
+ ap.add_argument('--freeze-artifact',type=Path,help='Explicit human-validated authorization required for test/all; not produced by phase 3.')
  ap.add_argument('--k',type=int,default=5)
  ap.add_argument('--convention',choices=CONVENTIONS,required=True,help='Explicit budget; chunk@k requires chunk judgments not supplied by this page evaluator.')
  ap.add_argument('--qrels')
@@ -71,6 +72,7 @@ def main():
  a=ap.parse_args()
  if a.k<1:ap.error('--k must be >=1')
  if a.convention=='chunk@k':ap.error('Page qrels cannot score chunk@k. Supply independently judged chunk qrels to a chunk evaluator.')
+ if a.split in {'test','all'}:require_test_authorization(ROOT.parents[1],a.freeze_artifact)
  if a.mode=='gold':check_gold_manifest(a.gold_manifest)
  rels=grade_map(a.mode,a.qrels or ROOT/('qrels_group_confirmed_PAGES.csv' if a.mode=='silver' else 'validated_qrels.csv'))
  questions,policy=load_selection_inputs(ROOT.parents[1])

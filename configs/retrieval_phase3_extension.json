@@ -1,0 +1,20 @@
+{
+  "version": "phase3b-window-mean-preregistered-v1",
+  "seed": 20261115,
+  "window": {"max_seq_length": 128, "overlap_content_tokens": 32, "aggregation": "mean_unit_windows_then_l2", "dtype": "float32", "batch_size": 16},
+  "methods": ["BM25_L0", "Dense128", "DenseWindowMean", "Hybrid128", "HybridWindowMean"],
+  "bm25": {"k1": 1.2, "b": 0.75, "lexical": "L0", "reuse_historical_rankings": true},
+  "rrf_k": 10,
+  "candidate_depth": 100,
+  "budgets": [1, 3, 5, 10, 20],
+  "scope": "ALL_DOCUMENTS_ALL_YEARS",
+  "dev_questions": 83,
+  "validation_questions": 30,
+  "validation_independent_of_phase3": false,
+  "validation_passes": 1,
+  "selection": "Fixed window variant; recommendation by dev strict known coverage@5, hit, page RR; historical order breaks ties",
+  "qrels": "ORIGINAL_279_SEED_ONLY",
+  "test_authorized": false,
+  "paraphrases_enabled": false,
+  "reranking": false
+}

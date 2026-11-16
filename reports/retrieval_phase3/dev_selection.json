@@ -1,0 +1,230 @@
+{
+  "bm25_grid_results": [
+    {
+      "objective": [
+        0.2931726907630522,
+        0.42168674698795183,
+        0.26686746987951804
+      ],
+      "parameters": {
+        "b": 0.75,
+        "k1": 1.5
+      }
+    },
+    {
+      "objective": [
+        0.3172690763052209,
+        0.4457831325301205,
+        0.27811244979919675
+      ],
+      "parameters": {
+        "b": 0.75,
+        "k1": 1.2
+      }
+    },
+    {
+      "objective": [
+        0.2991967871485944,
+        0.42168674698795183,
+        0.27991967871485945
+      ],
+      "parameters": {
+        "b": 0.5,
+        "k1": 1.5
+      }
+    }
+  ],
+  "bm25_parameters": {
+    "b": 0.75,
+    "k1": 1.2
+  },
+  "config_id": "342417c8c40e38ca523408777042324d6fa9d2e275b7ab33b62b98108b72c5e8",
+  "config_sha256": "0ab6e9aae751abd441cd0bbe120aa45910a46930f943c1a011bca849ebc0a88c",
+  "corpus_identity": {
+    "chunk_ids_sha256": "0dd0a30efa3f532ebaf06e4ebbd0ea3207903dcc38ffea522f1dfc8ec3d5dbf2",
+    "chunks": 2127,
+    "chunks_sha256": "0489ac8494e25d06b282548f55a4c845c1be2a64f1dbf45a9987145ab049cbb5",
+    "corpus_version": "b43f21bc24da3f85913bdf7e1d6d03dbbeb1d013145f2233b9162f6937fcc052",
+    "documents": 93,
+    "pages": 838
+  },
+  "dense_encoder": {
+    "dense_code_sha256": "4112920ceb819e9707cf744c313213f0a8d3c683d5859807d6795352cdacdf12",
+    "dependencies": {
+      "numpy": "2.5.4",
+      "sentence-transformers": "5.1.2",
+      "torch": "2.9.0+cpu",
+      "transformers": "4.57.1"
+    },
+    "device": "cpu",
+    "dimension": 384,
+    "files_sha256": "f7305f07447e75ab74e1b80b64514e5b3f3d7958d1228fdeb9eea1202a2092c3",
+    "max_seq_length": 128,
+    "model": "sentence-transformers/all-MiniLM-L12-v2",
+    "normalize": true,
+    "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+    "seed": 20261115
+  },
+  "human_validated": false,
+  "lexical_ablation_preference": "L0",
+  "objectives": {
+    "BM25": [
+      0.3172690763052209,
+      0.4457831325301205,
+      0.27811244979919675
+    ],
+    "BM25_L1": [
+      0.3112449799196787,
+      0.4457831325301205,
+      0.27269076305220885
+    ],
+    "Dense": [
+      0.14859437751004018,
+      0.2891566265060241,
+      0.17409638554216866
+    ],
+    "Hybrid": [
+      0.3042168674698795,
+      0.43373493975903615,
+      0.2937751004016064
+    ]
+  },
+  "policy_sha256": "2a18ef85d587ad81d8bd8610f48cc5c9c187555e856877a69d0b7b5cd5677cee",
+  "recommended_method": "BM25",
+  "rrf_grid_results": [
+    {
+      "objective": [
+        0.2640562248995984,
+        0.3855421686746988,
+        0.25060240963855424
+      ],
+      "rrf_k": 60
+    },
+    {
+      "objective": [
+        0.3042168674698795,
+        0.43373493975903615,
+        0.2937751004016064
+      ],
+      "rrf_k": 10
+    },
+    {
+      "objective": [
+        0.28413654618473894,
+        0.42168674698795183,
+        0.26686746987951804
+      ],
+      "rrf_k": 30
+    },
+    {
+      "objective": [
+        0.2580321285140562,
+        0.37349397590361444,
+        0.24819277108433738
+      ],
+      "rrf_k": 100
+    }
+  ],
+  "rrf_k": 10,
+  "selection": {
+    "document_corpus_filtered": false,
+    "effective_questions": 83,
+    "eligible_for_parameter_selection": true,
+    "excluded_question_ids": [
+      "FOMC_044",
+      "FOMC_129"
+    ],
+    "nominal_questions": 85,
+    "policy_sha256": "2a18ef85d587ad81d8bd8610f48cc5c9c187555e856877a69d0b7b5cd5677cee",
+    "policy_version": "targeted-dev-embargo-v1",
+    "purpose": "tuning",
+    "selected_question_ids": [
+      "FOMC_003",
+      "FOMC_004",
+      "FOMC_007",
+      "FOMC_009",
+      "FOMC_011",
+      "FOMC_012",
+      "FOMC_013",
+      "FOMC_014",
+      "FOMC_015",
+      "FOMC_016",
+      "FOMC_017",
+      "FOMC_018",
+      "FOMC_019",
+      "FOMC_021",
+      "FOMC_022",
+      "FOMC_023",
+      "FOMC_024",
+      "FOMC_026",
+      "FOMC_027",
+      "FOMC_030",
+      "FOMC_031",
+      "FOMC_032",
+      "FOMC_033",
+      "FOMC_035",
+      "FOMC_036",
+      "FOMC_038",
+      "FOMC_039",
+      "FOMC_042",
+      "FOMC_043",
+      "FOMC_045",
+      "FOMC_047",
+      "FOMC_048",
+      "FOMC_052",
+      "FOMC_053",
+      "FOMC_055",
+      "FOMC_057",
+      "FOMC_059",
+      "FOMC_061",
+      "FOMC_063",
+      "FOMC_064",
+      "FOMC_065",
+      "FOMC_066",
+      "FOMC_067",
+      "FOMC_069",
+      "FOMC_073",
+      "FOMC_074",
+      "FOMC_076",
+      "FOMC_079",
+      "FOMC_081",
+      "FOMC_082",
+      "FOMC_083",
+      "FOMC_088",
+      "FOMC_089",
+      "FOMC_090",
+      "FOMC_091",
+      "FOMC_095",
+      "FOMC_097",
+      "FOMC_098",
+      "FOMC_101",
+      "FOMC_107",
+      "FOMC_108",
+      "FOMC_109",
+      "FOMC_110",
+      "FOMC_112",
+      "FOMC_113",
+      "FOMC_116",
+      "FOMC_117",
+      "FOMC_119",
+      "FOMC_120",
+      "FOMC_121",
+      "FOMC_122",
+      "FOMC_124",
+      "FOMC_125",
+      "FOMC_126",
+      "FOMC_127",
+      "FOMC_130",
+      "FOMC_131",
+      "FOMC_134",
+      "FOMC_135",
+      "FOMC_137",
+      "FOMC_138",
+      "FOMC_144",
+      "FOMC_145"
+    ],
+    "split": "dev"
+  },
+  "test_authorized": false,
+  "validation_consulted": false
+}

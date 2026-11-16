@@ -4,10 +4,11 @@ Academic Machine Learning project, subject 5, École Centrale Casablanca.
 The objective is to compare retrieval and reranking strategies for grounded
 question answering over FOMC Minutes and Statements.
 
-**Branch update: phases 0–2.** Security, architecture, PDF extraction,
-preprocessing, EDA, deterministic chunking and benchmark alignment are implemented. BM25, Dense,
-Hybrid retrieval, rerankers, RAG generation and the local Streamlit application
-are planned, **not implemented**. No retrieval or generation scores are reported.
+**Branch update: phases 0–3.** Corpus processing, benchmark alignment and
+BM25 / Dense MiniLM / Hybrid RRF retrieval are implemented and executed on
+83 eligible development questions and 30 validation questions. Test retrieval
+remains disabled. Reranking, generation and Streamlit await later phases.
+See [phase-3 measured results and limitations](reports/progress/PHASE_3.md).
 
 ## Corpus and measured outputs
 
@@ -25,6 +26,9 @@ are planned, **not implemented**. No retrieval or generation scores are reported
 | Phase-1 checks | 22 tests passed; extraction and EDA reproduction verified |
 | Phase-2 alignment | All 294 retained excerpts located; 287 fully within baseline chunks, seven split |
 | Post-audit tests | 47 full / 29 corpus-independent tests passed locally |
+| Phase-3 tests | 80 full local / 57 corpus-independent tests passed |
+| Retrieval recommendation | BM25 L0, k1=1.2, b=0.75, selected on dev only |
+| Dense limitation | Locked checkpoint max_seq_length=128; 1,955/2,127 chunks truncated |
 
 PDFs, extracted corpus, model weights, private course materials and page
 screenshots stay local. Source metadata, benchmark files, descriptive tables
@@ -59,8 +63,9 @@ as the active pipeline or treat their presence as validated retrieval.
 ## Installation
 
 Validated environment: **Python 3.13.14, Windows x64**. Python 3.12 is not used.
-No database, Docker, cloud account or model download is required. Installation
-needs PyPI; subsequent corpus processing and tests are local.
+No database, Docker or cloud account is required. Corpus processing and the
+lightweight tests need no model download; Dense phase 3 downloads its official
+checkpoint once and then runs locally.
 
 For a fresh clone only, create a Python 3.13 virtual environment. Skip creation
 if the project's `.venv` already exists.
@@ -74,8 +79,8 @@ py -3.13 -m venv .venv
 ```
 
 PyMuPDF, NumPy and matplotlib cover phase 1; pytest supplies tests.
-The lock records the full effective environment. Retrieval/application extras
-in `pyproject.toml` describe future dependencies and are not installed here.
+The lock records the phase-1 environment. The separate phase-3 lock pins the
+tested CPU retrieval environment; application dependencies are for a later phase.
 
 ## Reproduce extraction and EDA
 
@@ -171,14 +176,78 @@ reading order. Word windows are not neural-token budgets. EDA is not a measure
 of retrieval quality. Official URLs may be unavailable or serve different
 bytes; source hashes must not be silently replaced.
 
+## Reproduce retrieval (phase 3)
+
+After restoring the PDFs and regenerating phase-1 exports, use the existing
+Python 3.13 environment. These inference commands assume a fresh experiment
+directory; a completed validation deliberately blocks further tuning/replays.
+
+```powershell
+& .venv\Scripts\python.exe -m pip install -r requirements-phase3.lock.txt
+& .venv\Scripts\python.exe -m pip install --no-build-isolation --no-deps -e .
+& .venv\Scripts\python.exe scripts/download_minilm.py
+& .venv\Scripts\python.exe scripts/run_retrieval_phase3.py --stage dev
+& .venv\Scripts\python.exe scripts/run_retrieval_phase3.py --stage validation
+& .venv\Scripts\python.exe scripts/report_retrieval_phase3.py
+& .venv\Scripts\python.exe -m pytest -q
+```
+
+On an already completed experiment, rerun only `report_retrieval_phase3.py`
+to regenerate tables/figures/pools without inference. Full rankings and texts
+stay local under `artifacts/phase3/`; lightweight results and the prioritized
+UNJUDGED review queue are in [reports/retrieval_phase3](reports/retrieval_phase3/).
+Known-positive coverage is conditional on incomplete page judgments, not gold
+recall. BM25/Dense/Hybrid validation coverage at five chunks is respectively
+35.56% / 10.56% / 27.78%. No test experiment has been run.
+
+Public-clone tests require neither PDFs nor model downloads:
+
+```powershell
+& .venv\Scripts\python.exe -m pytest -q tests/test_phase0.py tests/test_benchmark_phase2.py tests/test_retrieval_phase3.py
+```
+
+See [retrieval protocol](docs/retrieval_methodology.md),
+[error analysis](reports/retrieval_phase3/ERROR_ANALYSIS.md) and the
+[complete phase-3 report](reports/progress/PHASE_3.md).
+
+## Phase 3B: controlled review and complete-token Dense
+
+The original phase-3 outputs remain immutable. The separate extension uses
+the same MiniLM checkpoint with 126 content tokens per window, overlap 32,
+mean of normalized window embeddings and final L2 normalization. BM25/RRF
+parameters remain fixed. Validation is descriptive because it was already
+observed in phase 3; test remains locked.
+
+The supplied 3,731 lexical suggestions are **not human judgments**. Original
+review sheets stay local; imports wait for real attested group decisions.
+No augmented reference is created from automatic proposals. See
+[review protocol](docs/annotation_pool_review.md),
+[window methodology](docs/dense_windowing_methodology.md) and
+[extension report](reports/progress/PHASE_3_EXTENSION.md).
+
+```powershell
+& .venv\Scripts\python.exe scripts/review_annotations_phase3b.py
+& .venv\Scripts\python.exe scripts/run_phase3_extension.py --stage dev
+& .venv\Scripts\python.exe scripts/run_phase3_extension.py --stage validation
+& .venv\Scripts\python.exe scripts/report_phase3_extension.py
+```
+
+These commands require the original local phase-3 artifacts, restored corpus
+and locked checkpoint. On completed experiments run only the report command:
+the inference CLI refuses repeated validation or further dev selection.
+New artifacts stay in `artifacts/phase3_extension/`; lightweight seed diagnostics
+and additional UNJUDGED review candidates are under
+`reports/retrieval_phase3_extension/`. No new dependencies are needed.
+
 ## Progress
 
 | Phase | Status |
 |---|---|
 | 0 — Audit, security, architecture | Complete |
 | 1 — Corpus, extraction, preprocessing, EDA, chunking | Complete |
-| 2 — Benchmark alignment | Implemented on feature branch; human decisions remain before tuning |
-| 3 — Retrieval | Not started |
+| 2 — Benchmark alignment | Merged via PR #1; targeted dev embargo adopted |
+| 3 — Retrieval | Implemented and measured on 83 dev / 30 validation; new judgments pending |
+| 3B — Full-token Dense and controlled review | Measured on seed only; 111 local / 84 offline tests; human decisions pending |
 | 4 — Reranking | Not started |
 | 5 — Grounded RAG generation | Not started |
 | 6 — Evaluation and error analysis | Not started |

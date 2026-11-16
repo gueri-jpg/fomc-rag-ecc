@@ -34,3 +34,14 @@ Tests préparés : no/not, contractions, composés économiques, dates ISO, taux
 fractionnaires, pourcentages et signes négatifs; aucun changement du texte
 naturel ou de son mapping. Le prototype n'utilise aucun qrel pour apprendre
 des corrections et n'a téléchargé aucun modèle.
+
+## Exécution ultérieure — phase 3, 15 novembre 2026
+
+Le protocole ci-dessus décrit l'état préparatoire de phase 2. L'ablation a
+désormais été exécutée après l'embargo ciblé : 83 dev puis 30 validation,
+paramètres L0 sélectionnés sur dev et fixés pour L1. Les vrais spans raw des
+chunks sont employés ; leur reconstruction en L0 est vérifiée sans différence.
+Pas de resegmentation ni de nouveau texte Dense. L0 reste recommandé sur dev.
+Les mesures et limites figurent dans [PHASE_3](../reports/progress/PHASE_3.md)
+et [l'analyse d'erreurs](../reports/retrieval_phase3/ERROR_ANALYSIS.md).
+La mention « non exécutée » plus haut est conservée comme constat historique.
